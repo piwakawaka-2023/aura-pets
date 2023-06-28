@@ -29,4 +29,4 @@ Stretch:
 
 ## Documentation
 
-Found within the repository's wiki. Link here: https://github.com/piwakawaka-2023/aura-pets/wiki/Aura-Pets
+Found within the repository's wiki. Link here: [https://github.com/piwakawaka-2023/aura-pets/wiki/Aura-Pets](https://github.com/piwakawaka-2023/aura-pets/wiki)
