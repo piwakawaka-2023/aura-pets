@@ -25,7 +25,7 @@ Stretch:
 - I want to be able to select my pets class (which effects their stats).
 - I want to be able to train to upgrade my pets stats.
 - I want to be able to chat with other players regardless of team.
-- I want to see a leadboarder score for teams.
+- I want to see a leaderboard score for teams.
 
 ## Documentation
 
