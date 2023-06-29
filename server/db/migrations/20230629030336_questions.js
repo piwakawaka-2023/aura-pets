@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('questions', (table) => {
-    table.increments('q_id').primary()
+    table.increments('id').primary()
     table.string('question')
 
   })
