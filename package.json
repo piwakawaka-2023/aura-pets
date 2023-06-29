@@ -65,7 +65,7 @@
     "@devacademy/eslint-config": "^1.8.0",
     "@redux-devtools/extension": "^3.2.3",
     "express": "^4.17.2",
-    "knex": "^2.3.0",
+    "knex": "^2.4.2",
     "sqlite3": "^5.1.2",
     "superagent": "7.1.1",
     "ts-node": "^10.9.1"
