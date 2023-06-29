@@ -1,11 +1,24 @@
-import * as api from '../apis/results'
+import * as api from '../apis/answers'
 import { ThunkAction } from '../store'
+import { Answer } from '../../models/types'
+import { AnswerActions } from '../../models/actions'
 
-export const INCREMENT = 'INCREMENT'
+export const SET_ANSWERS = 'SET_ANSWERS'
 
-export function increment(name: string) {
+export function setAnswers(answers: Answer[]): AnswerActions {
   return {
-    type: INCREMENT,
-    payload: name,
+    type: SET_ANSWERS,
+    payload: answers,
+  }
+}
+
+export function getAnswerThunk(): ThunkAction {
+  return async (dispatch) => {
+    try {
+      const answersArr = await api.fetchAnswers()
+      dispatch(setAnswers(answersArr))
+    } catch (err) {
+      console.error('oh no, result action error! ', err)
+    }
   }
 }
