@@ -1,13 +1,19 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { getQuestionsThunk } from '../actions/questions'
 import { getAnswerThunk } from '../actions/answers'
+import { increment } from '../actions/results'
+import answersReducer from '../reducers/answers'
 
 function Quiz() {
   const dispatch = useAppDispatch()
   // const questions = useAppSelector((state) => state.questionsReducer)
   // const answers = useAppSelector((state) => state.answersReducer)
   const resultTally = useAppSelector((state) => state.resultsReducer)
+  interface StateData {
+    question: number
+    answerRelatedPet: string
+  }
 
   const tempQData = [
     {
@@ -45,6 +51,15 @@ function Quiz() {
     },
   ]
 
+  const [formData, setFormData] = useState(
+    tempQData.forEach((question) => {
+      return {
+        question: question.qId,
+        answerReleatedPet: '',
+      }
+    })
+  ) as StateData[]
+
   useEffect(() => {
     dispatch(getQuestionsThunk())
     dispatch(getAnswerThunk())
@@ -60,7 +75,10 @@ function Quiz() {
               {tempAData.map((answer) => {
                 if (answer.questionId === question.qId) {
                   return (
-                    <div key={answer.aId}>
+                    <div
+                      key={answer.aId}
+                      onChange={onAnswerSelection(answer.petName)}
+                    >
                       <input
                         type="radio"
                         id={`${answer.aId}`}
