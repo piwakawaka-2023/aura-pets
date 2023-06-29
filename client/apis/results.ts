@@ -1,5 +1,8 @@
 import request from 'superagent'
 
-const resultUrl = '/api/v1/result'
+const url = '/api/v1'
 
-export async function fetchResult()
+export async function fetchResult(id: number) {
+  const res = await request.get(`${url}/result/${id}`)
+  return res.body
+}
