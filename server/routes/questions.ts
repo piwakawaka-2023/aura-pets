@@ -9,8 +9,8 @@ router.get('/', async (req, res) => {
   try {
     const questionArr = await db.getQuestions()
     res.json(questionArr)
-  } catch (e) {
-    console.error(`error while getting questions: ${e}`)
+  } catch (error) {
+    console.error(`error while getting questions: ${error}`)
   }
   
 })
