@@ -12,8 +12,8 @@ export interface Answer {
 }
 
 export interface Result {
-  axolotl: number
-  penguin: number
-  bear: number
-  cat: number
+  pId: number
+  name: string
+  sprite: string
+  bio: string
 }
