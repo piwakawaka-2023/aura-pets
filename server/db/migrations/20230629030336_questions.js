@@ -6,7 +6,6 @@ exports.up = function (knex) {
   return knex.schema.createTable('questions', (table) => {
     table.increments('q_id').primary()
     table.string('question')
-    table.integer('a_id').references('answers.a_id')
 
   })
 }
