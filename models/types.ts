@@ -11,9 +11,11 @@ export interface Answer {
   petName: string
 }
 
-export interface Result {
-  pId: number
+export interface ResultData {
   name: string
   sprite: string
   bio: string
+}
+export interface Result extends ResultData {
+  pId: number
 }
