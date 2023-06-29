@@ -1,11 +1,13 @@
 import * as api from '../apis/results'
 import { ThunkAction } from '../store'
+import { Answer } from '../../models/types'
+import { AnswerActions } from '../../models/actions'
 
-export const INCREMENT = 'INCREMENT'
+export const SET_ANSWERS = 'SET_ANSWERS'
 
-export function increment(name: string) {
+export function setAnswers(answers: Answer[]): AnswerActions {
   return {
-    type: INCREMENT,
-    payload: name,
+    type: SET_ANSWERS,
+    payload: answers,
   }
 }

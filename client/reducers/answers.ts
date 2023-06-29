@@ -1,22 +1,17 @@
-import { INCREMENT } from '../actions/answers'
-import { AnswerAction } from '../../models/actions'
+import { Answer } from '../../models/types'
+import { AnswerActions } from '../../models/actions'
+import { SET_ANSWERS } from '../actions/answers'
 
-const initialState = {
-  axolotl: 0,
-  penguin: 0,
-  bear: 0,
-  cat: 0,
-}
+const initialState = [] as Answer[]
 
 export default function answersReducer(
   state = initialState,
-  action: AnswerAction
+  action: AnswerActions
 ) {
   const { type, payload } = action
   switch (type) {
-    case INCREMENT:
-      state.[payload] = state.[payload] + 1
-      return { ...state }
+    case SET_ANSWERS:
+      return payload
 
     default:
       return state

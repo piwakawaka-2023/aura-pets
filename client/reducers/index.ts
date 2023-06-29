@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 
-// import stuff from './stuff'
+import questionsReducer from './questions'
+import answersReducer from './answers'
+import resultsReducer from './results'
 
 export default combineReducers({
-  // stuff
+  questionsReducer,
+  answersReducer,
+  resultsReducer,
 })
