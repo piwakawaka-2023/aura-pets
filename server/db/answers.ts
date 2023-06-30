@@ -3,7 +3,7 @@ import {Answer}  from '../../models/types'
 const db = connection 
 
 
-export function getAnswers() {
+export function getAnswers(): Promise<Answer> {
   return db('answers')
   .join('questions', 'answers.question_id', 'questions.id')
   .join('pets', 'answers.pet_id', 'pets.id')
