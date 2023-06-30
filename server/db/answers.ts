@@ -5,11 +5,11 @@ const db = connection
 
 export function getAnswers() {
   return db('answers')
-  .select('id', 
+  .join('questions', 'answers.question_id', 'questions.id')
+  .join('pets', 'answers.pet_id', 'pets.id')
+  .select('answers.id', 
   'question_id',
   'answer',
-  'pet_id')
-  
-  .join('questions', 'answers.question_id', 'questions.id')
-  .join('pets', 'answers.pet_id', 'pet.id')
+  'pet_id',
+  'pets.name')
 }
