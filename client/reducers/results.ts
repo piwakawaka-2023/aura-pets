@@ -1,5 +1,5 @@
-import { INCREMENT, SET_RESULT } from '../actions/results'
-import { ResultAction } from '../../models/actions'
+import { INCREMENT } from '../actions/results'
+import { TallyAction } from '../../models/actions'
 
 export interface ResultTally {
   axolotl: number
@@ -17,16 +17,13 @@ const initialState = {
 
 export default function resultsReducer(
   state = initialState,
-  action: ResultAction
+  action: TallyAction
 ) {
   const { type, payload } = action
   switch (type) {
     case INCREMENT:
       state[payload] = state[payload] + 1
       return { ...state }
-
-    case SET_RESULT:
-      return payload
 
     default:
       return state
