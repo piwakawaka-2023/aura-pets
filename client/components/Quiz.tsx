@@ -22,7 +22,7 @@ function Quiz() {
   const [formData, setFormData] = useState<StateData[]>(
     questions.map((question) => {
       return {
-        question: question.qId,
+        question: question.id,
         answerRelatedPet: '',
       }
     })
