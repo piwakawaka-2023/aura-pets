@@ -8,8 +8,8 @@ export function getAnswers() {
   .join('questions', 'answers.question_id', 'questions.id')
   .join('pets', 'answers.pet_id', 'pets.id')
   .select('answers.id', 
-  'question_id',
+  'question_id as questionId',
   'answer',
-  'pet_id',
-  'pets.name')
+  'pet_id as petId',
+  'pets.name as petName')
 }
