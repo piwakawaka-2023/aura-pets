@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     res.json(answerArr)
   } catch (error) {
     console.error(`error while getting answers: ${error}`)
+    res.sendStatus(500)
   }
   
 })

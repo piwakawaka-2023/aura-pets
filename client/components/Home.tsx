@@ -1,4 +1,3 @@
-//ToDo Add Link to Home Page in the button
 import { Link } from 'react-router-dom'
 
 function Home() {
