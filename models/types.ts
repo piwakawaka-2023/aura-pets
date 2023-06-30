@@ -1,21 +1,19 @@
 export interface Question {
-  qId: number
+  id: number
   question: string
 }
 
 export interface Answer {
-  aId: number
+  id: number
   answer: string
   questionId: number
   petId: number
   petName: string
 }
 
-export interface ResultData {
+export interface Result {
+  id: number
   name: string
   sprite: string
   bio: string
-}
-export interface Result extends ResultData {
-  pId: number
 }
