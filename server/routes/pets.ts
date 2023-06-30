@@ -9,7 +9,7 @@ router.get('/:id', async (req, res) => {
     const petsArr = await db.getPet(id)
     res.json(petsArr)
   } catch (error) {
-    console.log('oh no, theyre down with the sickness, wa ah ah ah', error)
+    console.log('error while getting pet:', error)
     res.sendStatus(500)
   }
 })
