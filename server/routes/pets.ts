@@ -1,4 +1,4 @@
-import express, { Router } from 'express'
+import express from 'express'
 import * as db from '../db/pets'
 
 const router = express.Router()
