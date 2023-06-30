@@ -1,7 +1,7 @@
 import { INCREMENT, SET_RESULT } from '../actions/results'
 import { ResultAction } from '../../models/actions'
 
-interface ResultTally {
+export interface ResultTally {
   axolotl: number
   penguin: number
   bear: number

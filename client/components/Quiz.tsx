@@ -1,16 +1,21 @@
-import { ChangeEvent, useState, useEffect } from 'react'
+import { ChangeEvent, useState, useEffect, FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { getQuestionsThunk } from '../actions/questions'
 import { getAnswerThunk } from '../actions/answers'
-import { increment } from '../actions/results'
+import { getResultThunk, increment } from '../actions/results'
 import answersReducer from '../reducers/answers'
 import questionsReducer from '../reducers/questions'
+import { ResultTally } from '../reducers/results'
+import { useNavigate } from 'react-router-dom'
 
 function Quiz() {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   // const questions = useAppSelector((state) => state.questionsReducer)
   // const answers = useAppSelector((state) => state.answersReducer)
-  const resultTally = useAppSelector((state) => state.resultsReducer)
+  const resultTally: ResultTally = useAppSelector(
+    (state) => state.resultsReducer
+  )
   interface StateData {
     question: number
     answerRelatedPet: string
@@ -35,7 +40,7 @@ function Quiz() {
       answer: 'LOTS',
       questionId: 1,
       petId: 1,
-      petName: 'axolot',
+      petName: 'axolotl',
     },
     {
       aId: 2,
@@ -62,10 +67,10 @@ function Quiz() {
     })
   )
 
-  useEffect(() => {
-    dispatch(getQuestionsThunk())
-    dispatch(getAnswerThunk())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getQuestionsThunk())
+  //   dispatch(getAnswerThunk())
+  // }, [dispatch])
 
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData(
@@ -75,6 +80,39 @@ function Quiz() {
         return data
       })
     )
+  }
+
+  const handleSubmit = (evt: FormEvent) => {
+    evt.preventDefault()
+    const namesArr = formData.map((item) => {
+      return item.answerRelatedPet
+    })
+
+    namesArr.map((name) => {
+      dispatch(increment(name))
+    })
+
+    const comparisonArr = Object.values(resultTally)
+    comparisonArr.sort()
+    comparisonArr[3]
+
+    switch (comparisonArr[3]) {
+      case resultTally.axolotl:
+        navigate(`/result/${1}`)
+        break
+
+      case resultTally.penguin:
+        navigate(`/result/${2}`)
+        break
+
+      case resultTally.bear:
+        navigate(`/result/${3}`)
+        break
+
+      case resultTally.cat:
+        navigate(`/result/${4}`)
+        break
+    }
   }
 
   return (
@@ -102,6 +140,11 @@ function Quiz() {
             </section>
           )
         })}
+        <input
+          type="submit"
+          value="Subit Quiz Answers"
+          onClick={handleSubmit}
+        />
       </form>
     </>
   )
