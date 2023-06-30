@@ -1,10 +1,10 @@
 export interface Question {
-  qId: number
+  id: number
   question: string
 }
 
 export interface Answer {
-  aId: number
+  id: number
   answer: string
   questionId: number
   petId: number
@@ -12,7 +12,7 @@ export interface Answer {
 }
 
 export interface Result {
-  pId: number
+  id: number
   name: string
   sprite: string
   bio: string
