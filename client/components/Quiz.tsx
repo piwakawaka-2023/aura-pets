@@ -2,17 +2,15 @@ import { ChangeEvent, useState, useEffect, FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { getQuestionsThunk } from '../actions/questions'
 import { getAnswerThunk } from '../actions/answers'
-import { getResultThunk, increment } from '../actions/results'
-import answersReducer from '../reducers/answers'
-import questionsReducer from '../reducers/questions'
+import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
 
 function Quiz() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  // const questions = useAppSelector((state) => state.questionsReducer)
-  // const answers = useAppSelector((state) => state.answersReducer)
+  const questions = useAppSelector((state) => state.questionsReducer)
+  const answers = useAppSelector((state) => state.answersReducer)
   const resultTally: ResultTally = useAppSelector(
     (state) => state.resultsReducer
   )
@@ -21,45 +19,8 @@ function Quiz() {
     answerRelatedPet: string
   }
 
-  //=========================================== TEMPORARY ============================================
-  const tempQData = [
-    {
-      qId: 1,
-      question:
-        'How much wood would a woodchuck shuck if a woodchuck could shuck wood?',
-    },
-    {
-      qId: 2,
-      question: 'TEMP QUESTION 2',
-    },
-  ]
-
-  const tempAData = [
-    {
-      aId: 1,
-      answer: 'LOTS',
-      questionId: 1,
-      petId: 1,
-      petName: 'axolotl',
-    },
-    {
-      aId: 2,
-      answer: 'Eh, a bit',
-      questionId: 1,
-      petId: 2,
-      petName: 'bear',
-    },
-    {
-      aId: 3,
-      answer: 'TEMP ANSWER 1',
-      questionId: 2,
-      petId: 3,
-      petName: 'cat',
-    },
-  ]
-  //===============================================================================================
   const [formData, setFormData] = useState<StateData[]>(
-    tempQData.map((question) => {
+    questions.map((question) => {
       return {
         question: question.qId,
         answerRelatedPet: '',
@@ -67,10 +28,10 @@ function Quiz() {
     })
   )
 
-  // useEffect(() => {
-  //   dispatch(getQuestionsThunk())
-  //   dispatch(getAnswerThunk())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(getQuestionsThunk())
+    dispatch(getAnswerThunk())
+  }, [dispatch])
 
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData(
@@ -118,11 +79,11 @@ function Quiz() {
   return (
     <>
       <form>
-        {tempQData.map((question) => {
+        {questions.map((question) => {
           return (
             <section key={question.qId}>
               <p>{question.question}</p>
-              {tempAData.map((answer) => {
+              {answers.map((answer) => {
                 if (answer.questionId === question.qId) {
                   return (
                     <div key={answer.aId} onChange={onAnswerSelection}>
