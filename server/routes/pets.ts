@@ -1,9 +1,9 @@
 import express, { Router } from 'express'
-import * as db from '../db/dbpets'
+import * as db from '../db/pets'
 
 const router = express.Router()
 
-router.get('/result/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
     const petsArr = await db.getPet(id)
