@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
     const answerArr = await db.getAnswers()
     res.json(answerArr)
   } catch (error) {
-    console.error(`error while getting questions: ${error}`)
+    console.error(`error while getting answers: ${error}`)
   }
   
 })
+export default router
