@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { ChangeEvent, useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/hooks'
 import { getQuestionsThunk } from '../actions/questions'
 import { getAnswerThunk } from '../actions/answers'
@@ -51,19 +51,29 @@ function Quiz() {
     },
   ]
 
-  const [formData, setFormData] = useState(
-    tempQData.forEach((question) => {
+  const [formData, setFormData] = useState<StateData[]>(
+    tempQData.map((question) => {
       return {
         question: question.qId,
-        answerReleatedPet: '',
+        answerRelatedPet: '',
       }
     })
-  ) as StateData[]
+  )
 
   useEffect(() => {
     dispatch(getQuestionsThunk())
     dispatch(getAnswerThunk())
   }, [dispatch])
+
+  const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
+    setFormData([
+      ...formData,
+      {
+        question: Number(evt.target.name),
+        answerRelatedPet: evt.target.value,
+      },
+    ])
+  }
 
   return (
     <>
@@ -75,14 +85,11 @@ function Quiz() {
               {tempAData.map((answer) => {
                 if (answer.questionId === question.qId) {
                   return (
-                    <div
-                      key={answer.aId}
-                      onChange={onAnswerSelection(answer.petName)}
-                    >
+                    <div key={answer.aId} onChange={onAnswerSelection}>
                       <input
                         type="radio"
                         id={`${answer.aId}`}
-                        name={question.question}
+                        name={`${question.qId}`}
                         value={answer.petName}
                       />
                       <label htmlFor={`${answer.aId}`}>{answer.answer}</label>
