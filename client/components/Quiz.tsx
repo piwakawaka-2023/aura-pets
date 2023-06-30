@@ -4,6 +4,7 @@ import { getQuestionsThunk } from '../actions/questions'
 import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import answersReducer from '../reducers/answers'
+import questionsReducer from '../reducers/questions'
 
 function Quiz() {
   const dispatch = useAppDispatch()
@@ -66,13 +67,13 @@ function Quiz() {
   }, [dispatch])
 
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
-    setFormData([
-      ...formData,
-      {
-        question: Number(evt.target.name),
-        answerRelatedPet: evt.target.value,
-      },
-    ])
+    setFormData(
+      formData.map((data) => {
+        if (data.question === Number(evt.target.name))
+          data.answerRelatedPet = evt.target.value
+        return data
+      })
+    )
   }
 
   return (
