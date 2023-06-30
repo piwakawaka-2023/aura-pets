@@ -81,19 +81,19 @@ function Quiz() {
       <form>
         {questions.map((question) => {
           return (
-            <section key={question.qId}>
+            <section key={question.id}>
               <p>{question.question}</p>
               {answers.map((answer) => {
-                if (answer.questionId === question.qId) {
+                if (answer.questionId === question.id) {
                   return (
-                    <div key={answer.aId} onChange={onAnswerSelection}>
+                    <div key={answer.id} onChange={onAnswerSelection}>
                       <input
                         type="radio"
-                        id={`${answer.aId}`}
-                        name={`${question.qId}`}
+                        id={`${answer.id}`}
+                        name={`${question.id}`}
                         value={answer.petName}
                       />
-                      <label htmlFor={`${answer.aId}`}>{answer.answer}</label>
+                      <label htmlFor={`${answer.id}`}>{answer.answer}</label>
                     </div>
                   )
                 }
