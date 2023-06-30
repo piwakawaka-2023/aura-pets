@@ -2,17 +2,17 @@ import { INCREMENT } from '../actions/results'
 import { TallyAction } from '../../models/actions'
 
 export interface ResultTally {
-  axolotl: number
-  penguin: number
-  bear: number
-  cat: number
+  Axolotl: number
+  Penguin: number
+  Bear: number
+  Cat: number
 }
 
 const initialState = {
-  axolotl: 0,
-  penguin: 0,
-  bear: 0,
-  cat: 0,
+  Axolotl: 0,
+  Penguin: 0,
+  Bear: 0,
+  Cat: 0,
 } as ResultTally
 
 export default function resultsReducer(

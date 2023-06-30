@@ -7,31 +7,35 @@ import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
 
 function Quiz() {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const questions = useAppSelector((state) => state.questionsReducer)
   const answers = useAppSelector((state) => state.answersReducer)
   const resultTally: ResultTally = useAppSelector(
     (state) => state.resultsReducer
   )
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   interface StateData {
     question: number
     answerRelatedPet: string
   }
 
-  const [formData, setFormData] = useState<StateData[]>(
-    questions.map((question) => {
-      return {
-        question: question.id,
-        answerRelatedPet: '',
-      }
-    })
-  )
+  const [formData, setFormData] = useState([] as StateData[])
 
   useEffect(() => {
     dispatch(getQuestionsThunk())
     dispatch(getAnswerThunk())
   }, [dispatch])
+
+  useEffect(() => {
+    setFormData(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerRelatedPet: '',
+        }
+      })
+    )
+  }, [questions])
 
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData(
@@ -45,6 +49,7 @@ function Quiz() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
+
     const namesArr = formData.map((item) => {
       return item.answerRelatedPet
     })
@@ -54,23 +59,22 @@ function Quiz() {
     })
 
     const comparisonArr = Object.values(resultTally)
-    comparisonArr.sort()
-    comparisonArr[3]
+    const newArr = comparisonArr.sort()
 
-    switch (comparisonArr[3]) {
-      case resultTally.axolotl:
+    switch (newArr[3]) {
+      case resultTally.Axolotl:
         navigate(`/result/${1}`)
         break
 
-      case resultTally.penguin:
+      case resultTally.Penguin:
         navigate(`/result/${2}`)
         break
 
-      case resultTally.bear:
+      case resultTally.Bear:
         navigate(`/result/${3}`)
         break
 
-      case resultTally.cat:
+      case resultTally.Cat:
         navigate(`/result/${4}`)
         break
     }
