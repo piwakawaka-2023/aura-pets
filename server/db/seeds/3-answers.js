@@ -9,7 +9,7 @@ exports.seed = (knex) => {
     {id: 9003, answer: "*yawn* I just wanna sleep through the whole weekend.", question_id: 8001, pet_id: 3},
     {id: 9004, answer: "For me, I'd stay at home and read.", question_id: 8001, pet_id: 4},
     {id: 9005, answer: "I would love to have super speed and travel all across the world!", question_id: 8002, pet_id: 1},
-    {id: 9006, answer: "Flight, of course!", question_id: 2, pet_id: 2},
+    {id: 9006, answer: "Flight, of course!", question_id: 8002, pet_id: 2},
     {id: 9007, answer: "Telekinesis, so I can pick up the remote from across the room..", question_id: 8002, pet_id: 3},
     {id: 9008, answer: "I'd love to turn invisible and hide from the world.", question_id: 8002, pet_id: 4},
     {id: 9009, answer: "I'd love to visit a tropical resort and swim in the warm water. ", question_id: 8003, pet_id: 1},
