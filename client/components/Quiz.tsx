@@ -16,6 +16,7 @@ function Quiz() {
     answerRelatedPet: string
   }
 
+  //=========================================== TEMPORARY ============================================
   const tempQData = [
     {
       qId: 1,
@@ -51,7 +52,7 @@ function Quiz() {
       petName: 'cat',
     },
   ]
-
+  //===============================================================================================
   const [formData, setFormData] = useState<StateData[]>(
     tempQData.map((question) => {
       return {
