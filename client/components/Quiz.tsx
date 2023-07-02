@@ -33,6 +33,42 @@ function Quiz() {
     dispatch(getAnswerThunk())
   }, [dispatch])
 
+  useEffect(() => {
+    setFormData(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerRelatedPet: '',
+        }
+      })
+    )
+  }, [questions])
+
+  useEffect(() => {
+    if (resultTally.Count === 10) {
+      const comparisonArr = Object.values(resultTally)
+      comparisonArr.sort((a, b) => a - b)
+
+      switch (comparisonArr[3]) {
+        case resultTally.Axolotl:
+          navigate(`/result/${1}`)
+          break
+
+        case resultTally.Penguin:
+          navigate(`/result/${2}`)
+          break
+
+        case resultTally.Bear:
+          navigate(`/result/${3}`)
+          break
+
+        case resultTally.Cat:
+          navigate(`/result/${4}`)
+          break
+      }
+    }
+  }, [resultTally, navigate])
+
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData(
       formData.map((data) => {
@@ -45,35 +81,14 @@ function Quiz() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
+
     const namesArr = formData.map((item) => {
       return item.answerRelatedPet
     })
 
-    namesArr.map((name) => {
+    namesArr.forEach((name) => {
       dispatch(increment(name))
     })
-
-    const comparisonArr = Object.values(resultTally)
-    comparisonArr.sort()
-    comparisonArr[3]
-
-    switch (comparisonArr[3]) {
-      case resultTally.axolotl:
-        navigate(`/result/${1}`)
-        break
-
-      case resultTally.penguin:
-        navigate(`/result/${2}`)
-        break
-
-      case resultTally.bear:
-        navigate(`/result/${3}`)
-        break
-
-      case resultTally.cat:
-        navigate(`/result/${4}`)
-        break
-    }
   }
 
   return (
@@ -86,15 +101,17 @@ function Quiz() {
               {answers.map((answer) => {
                 if (answer.questionId === question.id) {
                   return (
-                    <div key={answer.id} onChange={onAnswerSelection}>
+                    <label key={answer.id} htmlFor={`${answer.id}`}>
                       <input
                         type="radio"
                         id={`${answer.id}`}
                         name={`${question.id}`}
                         value={answer.petName}
+                        onChange={onAnswerSelection}
                       />
-                      <label htmlFor={`${answer.id}`}>{answer.answer}</label>
-                    </div>
+                      {answer.answer}
+                      <br />
+                    </label>
                   )
                 }
               })}
@@ -103,7 +120,7 @@ function Quiz() {
         })}
         <input
           type="submit"
-          value="Subit Quiz Answers"
+          value="Submit Quiz Answers"
           onClick={handleSubmit}
         />
       </form>
