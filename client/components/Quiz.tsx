@@ -33,6 +33,17 @@ function Quiz() {
     dispatch(getAnswerThunk())
   }, [dispatch])
 
+  useEffect(() => {
+    setFormData(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerRelatedPet: '',
+        }
+      })
+    )
+  }, [questions])
+
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData(
       formData.map((data) => {
