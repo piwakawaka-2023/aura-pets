@@ -5,14 +5,15 @@ import checkJwt from '../auth0'
 
 const router = express.Router()
 
-router.get('/', checkJwt, async (req: JwtRequest, res) => {
+router.get('/:id', checkJwt, async (req: JwtRequest, res) => {
   try {
+    const id = Number(req.params.id)
     const auth0Id = req.auth?.sub
     if (!auth0Id) {
       console.error('No auth0 id')
       return res.status(401).send('Unauthorized')
     } else {
-      const profileData = await db.getProfile(auth0Id)
+      const profileData = await db.getProfile(id)
       res.json({ profileData })
     }
   } catch (error) {
@@ -21,26 +22,23 @@ router.get('/', checkJwt, async (req: JwtRequest, res) => {
   }
 })
 
-router.put('/', checkJwt, (req: JwtRequest, res) => {
+router.put('/:id', checkJwt, (req: JwtRequest, res) => {
+  const id = Number(req.params.id)
   const { updateData } = req.body
   const auth0Id = req.auth?.sub
   const profileInfoToUpdate = {
-    id: updateData.id,
-    username: updateData.username,
+    ...updateData,
     pet_nickname: updateData.petNickname,
-    pet_id: updateData.petId,
-    sprite: updateData.sprite,
     bio: updateData.bio,
-    user_auth_id: auth0Id,
   }
 
   if (!auth0Id) {
     console.error('No auth0Id')
     return res.status(401).send('Unauthorized')
   }
-  db.canUserEdit(updateData.id, auth0Id)
+  db.canUserEdit(id, auth0Id)
     .then(() => db.updateProfile(profileInfoToUpdate))
-    .then(() => db.getProfile(auth0Id))
+    .then(() => db.getProfile(id))
     .then((profile) => res.json({ profile }))
     .catch((err: Error) => {
       console.error(err)

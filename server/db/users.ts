@@ -3,9 +3,9 @@ import connection from './connection'
 
 const db = connection
 
-export function getProfile(userAuthId: string) {
+export function getProfile(id: number) {
   return db('users')
-    .where('user_auth_id', userAuthId)
+    .where('id', id)
     .join('pets', 'users.pet_id', 'pets.id')
     .select(
       'username',
@@ -15,9 +15,9 @@ export function getProfile(userAuthId: string) {
     )
 }
 
-export function canUserEdit(userId: number, auth0id: string) {
+export function canUserEdit(id: number, auth0id: string) {
   return db('users')
-    .where('id', userId)
+    .where('id', id)
     .first()
     .then((users) => {
       if (users.user_auth_id !== auth0id) {
