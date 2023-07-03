@@ -26,19 +26,22 @@
 //       </>
 //     )
 //   }
-  
+
 //   export default Home
 
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
 import { User, useAuth0 } from '@auth0/auth0-react'
 import { Canvas } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useNavigate } from 'react-router-dom'
 
- function Home() {
+function Home() {
   const gltf = useLoader(GLTFLoader, '../imgs/game_boy_advance_sp.glb')
 
   const { user, logout, loginWithRedirect } = useAuth0()
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -46,7 +49,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
         <div className="neon">Aura </div>
         <div className="flux">Pets </div>
 
-        <button>Find your pet</button>
+        <button onClick={() => navigate('/Quiz')}>Find your pet</button>
       </div>
 
       <div className="three-d-parent">
