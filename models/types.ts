@@ -17,3 +17,27 @@ export interface Result {
   sprite: string
   bio: string
 }
+
+export interface UserResultData {
+  username: string
+  petNickname: string
+  petId: number
+  bio: string
+  userAuthId: string | undefined
+}
+
+export interface UserResult extends UserResultData {
+  id: number
+}
+
+export interface UserResultDataSnakeCase {
+  username: string
+  pet_nickname: string
+  pet_id: number
+  bio: string
+  user_auth_id: string | undefined
+}
+
+export interface UserResultSnakeCase extends UserResultDataSnakeCase {
+  id: number
+}

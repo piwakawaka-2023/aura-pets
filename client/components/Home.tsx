@@ -1,34 +1,3 @@
-/* eslint-disable react/no-unknown-property */
-// import { Link } from 'react-router-dom'
-// import { User, useAuth0 } from '@auth0/auth0-react'
-
-// function Home() {
-
-//   const { user, logout, loginWithRedirect } = useAuth0()
-
-//   const handleSignIn = () => {
-//     return loginWithRedirect()
-//   }
-
-//     return (
-//       <>
-//      <div className="centered-container">
-//       <div className="home-div">
-//        <h1 className="welcome-message">Welcome to Aura Pets</h1>
-//        <h2 className="home-message">Click the button below to find out your Aura Pet</h2>
-//        <button className="quiz-btn-centered">
-//          <Link to="/Quiz">
-//            <button onClick={handleSignIn}>Sign In</button>
-//          </Link>
-//        </button>
-//       </div>
-//      </div>
-//       </>
-//     )
-//   }
-
-//   export default Home
-
 import { Link } from 'react-router-dom'
 import { User, useAuth0 } from '@auth0/auth0-react'
 import { Canvas } from '@react-three/fiber'
@@ -37,9 +6,14 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useNavigate } from 'react-router-dom'
 
 function Home() {
+
   const gltf = useLoader(GLTFLoader, '../imgs/game_boy_advance_sp.glb')
 
-  const { user, logout, loginWithRedirect } = useAuth0()
+
+  // const handleSignIn = () => {
+  //   return loginWithRedirect()
+  // }
+
 
   const navigate = useNavigate()
 
@@ -74,6 +48,7 @@ function Home() {
           </Canvas>
         </div>
       </div>
+
     </>
   )
 }
