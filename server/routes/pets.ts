@@ -14,4 +14,15 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.post('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const petsArr = await db.postPet(id)
+    res.json(petsArr)
+  } catch (error) {
+    console.log('error while getting post for pet:', error)
+    res.sendStatus(500)
+  }
+})
+
 export default router
