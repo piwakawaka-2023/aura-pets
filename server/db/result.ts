@@ -1,14 +1,27 @@
 import connection from './connection'
-import { Result } from '../../models/types'
+import {
+  Result,
+  UserResultDataSnakeCase,
+  UserResultSnakeCase,
+} from '../../models/types'
 
 const db = connection
-
 
 export function getResult(id: number): Promise<Result[]> {
   return db('pets').select().where({ id })
 }
 
-export function postResult(id: number): Promise<number> {
-  return db('users').insert(id AS pet_id)
+export function postResult(
+  data: UserResultDataSnakeCase
+): Promise<UserResultSnakeCase[]> {
+  return db('users')
+    .insert(data)
+    .returning([
+      'id',
+      'username',
+      'pet_nickname',
+      'pet_id',
+      'bio',
+      'user_auth_id',
+    ])
 }
-
