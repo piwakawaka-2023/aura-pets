@@ -238,7 +238,7 @@ function Quiz() {
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => {
       const updatedFormData = [...prevFormData];
-      updatedFormData[currentQuestion].answerRelatedPet = evt.target.value;
+      updatedFormData[currentQuestion].answerRelatedPet = evt.target.id;
       return updatedFormData;
     });
   };
@@ -297,6 +297,7 @@ function Quiz() {
                             name={`${question.id}`}
                             value={answer.petName}
                             onChange={onAnswerSelection}
+                            checked={String(answer.id) === formData[currentQuestion].answerRelatedPet}
                             className="quiz-input"
                           />
                           {answer.answer}
