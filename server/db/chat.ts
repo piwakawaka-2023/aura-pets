@@ -1,5 +1,4 @@
 import connection from './connection'
-import {Answer}  from '../../models/types'
 const db = connection 
 
 export function getAllMessages() {
