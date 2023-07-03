@@ -3,21 +3,17 @@ import connection from './connection'
 
 const db = connection
 
-// GET PROFILE DATA
 export function getProfile(userAuthId: string) {
   return db('users')
     .where('user_auth_id', userAuthId)
     .join('pets', 'users.pet_id', 'pets.id')
     .select(
-      'id',
       'username',
       'pet_nickname',
       'pets.sprite AS sprite',
       'users.bio AS bio'
     )
 }
-
-// Can user edit?
 
 export function canUserEdit(userId: number, auth0id: string) {
   return db('users')
@@ -30,10 +26,6 @@ export function canUserEdit(userId: number, auth0id: string) {
     })
 }
 
-// PATCH PROFILE DATA
-
 export function updateProfile(profileData) {
   return db('users').where('id', profileData.id).update(profileData)
 }
-
-// DEL PROFILE DATA

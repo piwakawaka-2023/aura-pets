@@ -1,10 +1,10 @@
 import express from 'express'
 import path from 'path'
 
-import pets from './routes/pets'
+import pets from './routes/result'
 import questions from './routes/questions'
 import answers from './routes/answers'
-import profile from './routes/profile'
+import profile from './routes/users'
 
 const server = express()
 

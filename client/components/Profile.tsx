@@ -1,13 +1,18 @@
+import { useEffect, useState } from 'react'
+import * as api from '../apis/users'
+
 function Profile() {
   const tempData = {
-    id: 3999,
     username: 'Jo',
     petNickname: 'Scarn2',
     petId: 4,
     sprite: '/imgs/bear-idle.gif',
     bio: 'SAH DUDE',
-    userAuthId: 30000,
   }
+
+  const [profileInfo, setProfileInfo] = useState()
+
+  useEffect(() => {})
 
   return (
     <>
