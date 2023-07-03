@@ -1,5 +1,5 @@
 import express from 'express'
-import * as db from '../db/pets'
+import * as db from '../db/result'
 
 const router = express.Router()
 
@@ -17,8 +17,7 @@ router.get('/:id', async (req, res) => {
 router.post('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const petsArr = await db.postPet(id)
-    res.json(petsArr)
+    await db.postResult(id)
   } catch (error) {
     console.log('error while getting post for pet:', error)
     res.sendStatus(500)

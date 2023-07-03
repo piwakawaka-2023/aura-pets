@@ -1,7 +1,7 @@
 import express from 'express'
 import path from 'path'
 
-import pets from './routes/pets'
+import pets from './routes/result'
 import questions from './routes/questions'
 import answers from './routes/answers'
 
