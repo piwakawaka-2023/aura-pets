@@ -8,6 +8,7 @@ import App from './components/App'
 import Home from './components/Home'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
+import Profile from './components/Profile'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ export const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/Quiz" element={<Quiz />}></Route>
       <Route path="/Result/:id" element={<Result />} />
+      <Route path="/profile" element={<Profile />} />
     </Route>
   )
 )
