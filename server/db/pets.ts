@@ -1,13 +1,8 @@
 import connection from './connection'
-import {} from '../../models/types'
 import { Result } from '../../models/types'
+
 const db = connection
 
 export function getPet(id: number): Promise<Result[]> {
-  return db('pets').select('id', 'name', 'sprite', 'bio').where({ id }) //Hopefully this is the table name
+  return db('pets').select().where({ id })
 }
-
-// pId: number
-//   name: string
-//   sprite: string
-//   bio: string
