@@ -1,0 +1,351 @@
+//Home page component .
+@font-face {
+  font-family: 'netflix';
+  src: url('/client/styles/NetflixSans-Bold.otf') format('opentype');
+}
+
+.welcome-message {
+  text-align: center;
+  color: green;
+}
+
+h1 {
+  text-align: center;
+}
+
+// button {
+//   text-align: center;
+//   color: green;
+//   text-decoration: none;
+// }
+
+.home-message {
+  text-align: center;
+  color: green;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+
+// .quiz-btn-centered {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #007bff;
+//   color: #fff;
+//   padding: 10px 20px;
+//   border-radius: 5px;
+//   border: none;
+//   text-decoration: none;
+//   font-size: 18px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+// }
+
+// .quiz-btn-centered:hover {
+//   background-color: #0056b3;
+// }
+
+// .quiz-btn-centered li {
+//   list-style-type: none;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .quiz-btn-centered li::before {
+//   content: '▶';
+//   margin-right: 5px;
+// }
+
+// .quiz-btn-centered li:first-child::before {
+//   content: '';
+// }
+
+// styles for the home page
+// have tried adding the image to our folder under Aura-neon-background.png also
+
+// * issue having troubel with background image displaying.git push origin
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-image: url('/public/imgs/Aura-neon-background.png') !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: netflix;
+}
+
+//background-image: url('https://w0.peakpx.com/wallpaper/946/437/HD-wallpaper-neon-gradient-minimalist.jpg');
+
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ // height: 45%;
+  //margin-bottom: 50px;
+}
+
+// button {
+//   margin-top: 20px;
+//   margin-bottom: 5px;
+//   z-index: 20;
+//   margin-right: 40px;
+// }
+
+.neon {
+  font-family: neon;
+  color: #fb4264;
+  font-size: 8vw;
+  line-height: 7vw;
+  text-shadow: 0 0 3vw #f40a35;
+  z-index: 2;
+  margin-top: 20px;
+  // margin-right: 50px;
+}
+
+.flux {
+  font-family: neon;
+  color: #426dfb;
+  font-size: 8vw;
+  line-height: 7vw;
+  text-shadow: 0 0 3vw #2356ff;
+  z-index: 2;
+}
+
+.neon {
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #fa1c16, 0 0 3vw #fa1c16, 0 0 10vw #fa1c16,
+      0 0 10vw #fa1c16, 0 0 0.4vw #fed128, 0.5vw 0.5vw 0.1vw #806914;
+    color: #fed128;
+  }
+  50% {
+    text-shadow: 0 0 0.5vw #800e0b, 0 0 1.5vw #800e0b, 0 0 5vw #800e0b,
+      0 0 5vw #800e0b, 0 0 0.2vw #800e0b, 0.5vw 0.5vw 0.1vw #40340a;
+    color: #806914;
+  }
+}
+
+.flux {
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 2s linear infinite;
+  -webkit-animation: flux 2s linear infinite;
+  -o-animation: flux 2s linear infinite;
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #1041ff, 0 0 3vw #1041ff, 0 0 10vw #1041ff,
+      0 0 10vw #1041ff, 0 0 0.4vw #8bfdfe, 0.5vw 0.5vw 0.1vw #147280;
+    color: #28d7fe;
+  }
+  50% {
+    text-shadow: 0 0 0.5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180,
+      0 0 5vw #082180, 0 0 0.2vw #082180, 0.5vw 0.5vw 0.1vw #0a3940;
+    color: #146c80;
+  }
+}
+
+/* background-image: url('https://thumbs.gfycat.com/HomelyBewitchedItaliangreyhound-size_restricted.gif'); */
+/* background-image: url('https://i.makeagif.com/media/1-12-2021/izAv5U.gif'); */
+
+/* h1{
+  text-align: center;
+  color: whitesmoke;
+  margin-bottom: -100px;
+} */
+
+.three-d-parent {
+  margin-top: -250px;
+  z-index: 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+button {
+  padding: 25px 30px;
+  background-color: #050801;
+  color: #03e9f4;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 4px;
+  overflow: hidden;
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+
+///////////////////////////////////
+/// 
+/// *** Quiz Page **////
+
+// .container {
+//   max-width: 800px;
+//   padding: 20px;
+//   display: flex;
+//   justify-content: center; /* Center horizontally */
+//   align-items: center; /* Center vertically */
+// }
+
+// Define styles for the form and its elements
+
+// .form-parent{
+//   display:table-cell;
+//   vertical-align:middle
+  
+// }
+
+// #quiz-form {
+//   background-color: rgba(255, 255, 255, 0.8);
+//   border-radius: 5px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   padding: 20px;  
+// }
+
+// .quiz-section {
+//   margin-bottom: 20px;
+// }
+
+// .quiz-question {
+//   font-size: 18px;
+//   margin-bottom: 10px;
+// }
+
+// .quiz-label {
+//   display: block;
+//   margin-bottom: 10px;
+// }
+
+// .quiz-input {
+//   margin-right: 5px;
+// }
+
+// .quiz-button {
+//   padding: 10px 20px;
+//   background-color: #3498db;
+//   color: #fff;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
+
+// .quiz-button:disabled {
+//   background-color: #ccc;
+//   cursor: not-allowed;
+// }
+
+// .quiz-submit {
+//   background-color: #27ae60;
+// }
+
+
+
+
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  
+
+}
+
+#quiz-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  z-index: -20;
+}
+
+#quiz-form {
+ 
+  background-color: #bdcad9;
+  background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
+  
+ 
+
+  // background-color: #ffffff;
+  // background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+  //  background: rgba(255, 255, 255, 0.67);
+   
+   border-radius: 16px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+   backdrop-filter: blur(19.9px);
+   -webkit-backdrop-filter: blur(19.9px);
+   opacity: 1.5;
+   border: 1px solid rgba(0, 0, 0, 0.99);
+   padding: 20px;
+  /* Add any other desired styles */
+}
+
+
+
+.quiz-section {
+  margin-bottom: 20px;
+}
+
+.quiz-question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.quiz-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.quiz-input {
+  margin-right: 5px;
+}
+
+.quiz-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quiz-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.quiz-submit {
+  background-color: #27ae60;
+}
+
