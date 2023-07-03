@@ -8,11 +8,17 @@ export async function fetchResult(id: number): Promise<Result> {
   return res.body
 }
 
-export function postResult(result: Result, id: number, token: string): Promise<number> {
-  return request.post(`${url}/${id}`).set(
-    'Authorization',
-    `Bearer ${token}`
-  ).send({result}).then((res) => res.body.result).catch((logError) => {
- console.error('error' logError)
-  })
+export function postResult(
+  id: number,
+  resultData: object | undefined,
+  token: string
+): Promise<number> {
+  return request
+    .post(`${url}/${id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(resultData)
+    .then((res) => res.body.result)
+    .catch((logError) => {
+      console.error('error', logError)
+    })
 }

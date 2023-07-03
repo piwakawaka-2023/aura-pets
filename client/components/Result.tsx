@@ -1,19 +1,35 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchResult } from '../apis/results'
+import { fetchResult, postResult } from '../apis/results'
 import * as type from '../../models/types'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function Result() {
   const { id } = useParams()
   const [pet, setPet] = useState({} as type.Result)
+  const { user, getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
     async function resultPromsie() {
       const res = await fetchResult(Number(id))
+      const token = await getAccessTokenSilently()
       setPet(res)
+      return { pet, token }
     }
     resultPromsie()
-  }, [id])
+      .then(({ pet, token }) => {
+        const userPet = {
+          petId: pet.id,
+          username: user?.nickname,
+          petNickname: pet.name,
+          userAuthId: user?.sub,
+        }
+        postResult(userPet.petId, userPet, token)
+      })
+      .catch((err) => {
+        console.error('oops', err)
+      })
+  }, [id, pet, getAccessTokenSilently, user])
 
   return (
     <>
