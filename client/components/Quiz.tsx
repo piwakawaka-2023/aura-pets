@@ -5,8 +5,11 @@ import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function Quiz() {
+ 
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const questions = useAppSelector((state) => state.questionsReducer)
@@ -81,7 +84,7 @@ function Quiz() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-
+    
     const namesArr = formData.map((item) => {
       return item.answerRelatedPet
     })
