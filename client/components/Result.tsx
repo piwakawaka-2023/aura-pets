@@ -7,6 +7,10 @@ import AnimatedPage from './AnimatedPage'// added james for page transition
 
 import { useAuth0 } from '@auth0/auth0-react'
 
+import Pet from './Pet'
+
+
+
 
 function Result() {
   const { id } = useParams()
@@ -42,6 +46,7 @@ function Result() {
       <h2>{pet.name}</h2>
       <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
       <p>{pet.bio}</p>
+      <Pet />
     </AnimatedPage>
     </>
   )

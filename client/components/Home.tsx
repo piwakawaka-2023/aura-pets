@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { Link } from 'react-router-dom'
 import { User, useAuth0 } from '@auth0/auth0-react'
 import { Canvas } from '@react-three/fiber'
