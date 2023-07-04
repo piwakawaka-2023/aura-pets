@@ -1,10 +1,8 @@
-//import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import store from './store'
-import { Auth0Provider } from '@auth0/auth0-react' // added
-import App from './components/App'
+import { Auth0Provider } from '@auth0/auth0-react'
 import { Provider } from 'react-redux'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,12 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
       clientId="UeEZBYf1faTRYtFSwqEjjAvIK3zTgt6A"
       redirectUri={window.location.origin}
       audience="https://pets/api"
-      
     >
       <Provider store={store}>
-
-      <RouterProvider router={router} />
-      <App />
+        <RouterProvider router={router} />
       </Provider>
     </Auth0Provider>
   )
