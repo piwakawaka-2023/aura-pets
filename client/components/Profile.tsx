@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ChangeEvent, FormEvent } from 'react'
 import { useParams } from 'react-router-dom'
-import * as api from '../apis/users'
+import { UpdateUserInfo, UserProfile } from '../../models/types'
 import { IfAuthenticated } from '../utilities/Authenticated'
-import { UserProfile } from '../../models/types'
+import * as api from '../apis/users'
 
 function Profile() {
   const { username } = useParams()
   const [profileInfo, setProfileInfo] = useState({} as UserProfile)
+  const [formData, setFormData] = useState({} as UpdateUserInfo)
+  const [hiddenForm, setHiddenForm] = useState(true as boolean)
 
   useEffect(() => {
     async function getProfileData() {
@@ -21,6 +23,30 @@ function Profile() {
       .catch(() => 'oh no error!')
   }, [username])
 
+  useEffect(() => {
+    setFormData({
+      petNickname: profileInfo.petNickname,
+      bio: profileInfo.userBio,
+    } as UpdateUserInfo)
+  }, [username, profileInfo])
+
+  const handleHideForm = () => {
+    setHiddenForm(!hiddenForm)
+  }
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    })
+  }
+
+  const handleSubmit = (evt: FormEvent) => {
+    evt.preventDefault()
+    api.patchProfile(username, formData)
+    handleHideForm()
+  }
+
   return (
     <>
       <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
@@ -30,7 +56,44 @@ function Profile() {
       </h2>
       <h3>Nickname: {profileInfo.petNickname}</h3>
       <p>{profileInfo.userBio}</p>
-      <IfAuthenticated></IfAuthenticated>
+      <IfAuthenticated>
+        <section>
+          {hiddenForm ? (
+            <button onClick={handleHideForm}>Edit Pet Info</button>
+          ) : (
+            <>
+              <form>
+                <label htmlFor="petNickname">Your Pet&apos;s Nickname</label>
+                <input
+                  value={formData.petNickname}
+                  placeholder={formData.petNickname}
+                  type="text"
+                  id="petNickname"
+                  name="petNickname"
+                  onChange={handleChange}
+                />
+
+                <label htmlFor="bio">Pet&apos;s Bio</label>
+                <input
+                  value={formData.bio}
+                  placeholder={formData.bio}
+                  type="text"
+                  id="bio"
+                  name="bio"
+                  onChange={handleChange}
+                />
+
+                <input
+                  type="submit"
+                  value="Update Pet Information"
+                  onClick={handleSubmit}
+                />
+              </form>
+              <button onClick={() => handleHideForm()}>Back</button>
+            </>
+          )}
+        </section>
+      </IfAuthenticated>
     </>
   )
 }
