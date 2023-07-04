@@ -5,7 +5,6 @@ import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import AnimatedPage from './AnimatedPage'
 
 function Quiz() {
@@ -37,19 +36,19 @@ function Quiz() {
   }, [dispatch])
 
   useEffect(() => {
-    setFormData(
-      questions.map((question) => {
-        return {
-          question: question.id,
-          answerRelatedPet: '',
-        }
-      })
-    )
     setFormAnswers(
       questions.map((question) => {
         return {
           question: question.id,
           answerId: '',
+        }
+      })
+    )
+    setFormData(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerRelatedPet: '',
         }
       })
     )
@@ -148,7 +147,7 @@ function Quiz() {
                               value={answer.petName}
                               onChange={onAnswerSelection}
                               checked={
-                                String(answer.id) ===
+                                String(answer.id) ==
                                 formAnswers[currentQuestion].answerId
                               }
                               className="quiz-input"
