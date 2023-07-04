@@ -5,14 +5,18 @@ const db = connection
 
 export function getProfile(id: number) {
   return db('users')
-    .where('id', id)
+    .where('users.id', id)
     .join('pets', 'users.pet_id', 'pets.id')
     .select(
+      'users.id AS usersId',
       'username',
-      'pet_nickname',
-      'pets.sprite AS sprite',
-      'users.bio AS bio'
+      'pet_nickname AS petNickname',
+      'pets.id AS petsTypeId',
+      'users.pet_id AS usersPetId',
+      'sprite',
+      'users.bio AS userBio'
     )
+    .first()
 }
 
 export function canUserEdit(id: number, auth0id: string) {
@@ -24,8 +28,4 @@ export function canUserEdit(id: number, auth0id: string) {
         throw new Error('Unauthorized')
       }
     })
-}
-
-export function updateProfile(profileData) {
-  return db('users').where('id', profileData.id).update(profileData)
 }

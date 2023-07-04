@@ -1,51 +1,37 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import * as api from '../apis/users'
 
-function Profile() {
-  const tempData = {
-    username: 'Jo',
-    petNickname: 'Scarn2',
-    petId: 4,
-    sprite: '/imgs/bear-idle.gif',
-    bio: 'SAH DUDE',
-  }
+interface ProfileData {
+  usersId: number
+  username: string
+  petNickname: string
+  petsTypeId: number
+  usersPetId: number
+  sprite: string
+  userBio: string
+}
 
-  const [profileInfo, setProfileInfo] = useState({
-    username: '',
-    petNickname: '',
-    petId: 0,
-    sprite: '',
-    bio: '',
-  })
-  const { getAccessTokenSilently } = useAuth0()
+function Profile() {
   const { id } = useParams()
+  const [profileInfo, setProfileInfo] = useState({} as ProfileData)
 
   useEffect(() => {
-    async function getUserProfile() {
-      try {
-        const token = await getAccessTokenSilently()
-        const userProfile = api.fetchProfile(Number(id), token)
-        return userProfile
-      } catch (err) {
-        console.error('oh no error! ', err)
-      }
-    }
-    getUserProfile()
+    api
+      .fetchProfile(Number(id))
       .then(setProfileInfo)
-      .catch((err) => console.error('oh no error! ', err))
-  }, [id, getAccessTokenSilently])
+      .catch(() => 'oh no error!')
+  }, [id])
 
   return (
     <>
-      <img src={tempData.sprite} alt="pet sprite"></img>
+      <img src={`/imgs/${profileInfo.sprite}`} alt="pet sprite"></img>
       <h2>
         <strong>Username:</strong>
-        {tempData.username}
+        {profileInfo.username}
       </h2>
-      <h3>{tempData.petNickname}</h3>
-      <p>{tempData.bio}</p>
+      <h3>Nickname: {profileInfo.petNickname}</h3>
+      <p>{profileInfo.userBio}</p>
     </>
   )
 }

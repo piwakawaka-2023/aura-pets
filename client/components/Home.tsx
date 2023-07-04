@@ -1,19 +1,21 @@
-import { Link } from 'react-router-dom'
-import { User, useAuth0 } from '@auth0/auth0-react'
 import { Canvas } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
 
 function Home() {
-
   const gltf = useLoader(GLTFLoader, '../imgs/game_boy_advance_sp.glb')
+  const { logout, loginWithRedirect } = useAuth0()
 
+  const handleSignIn = () => {
+    return loginWithRedirect()
+  }
 
-  // const handleSignIn = () => {
-  //   return loginWithRedirect()
-  // }
-
+  const handleSignOut = () => {
+    logout()
+  }
 
   const navigate = useNavigate()
 
@@ -22,8 +24,13 @@ function Home() {
       <div className="container">
         <div className="neon">Aura </div>
         <div className="flux">Pets </div>
-
-        <button onClick={() => navigate('/Quiz')}>Find your pet</button>
+        <IfAuthenticated>
+          <button onClick={() => navigate('/Quiz')}>Find your pet</button>
+          <button onClick={handleSignOut}>Log-Out</button>
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <button onClick={handleSignIn}>Login-in/Sign Up</button>
+        </IfNotAuthenticated>
       </div>
 
       <div className="three-d-parent">
@@ -48,7 +55,6 @@ function Home() {
           </Canvas>
         </div>
       </div>
-
     </>
   )
 }

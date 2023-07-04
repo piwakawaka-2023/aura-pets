@@ -19,19 +19,19 @@ export interface Result {
 }
 
 export interface UserResultData {
-  username: string
-  petNickname: string
   petId: number
-  bio: string
+  username: string | undefined
+  petNickname: string
   userAuthId: string | undefined
 }
 
 export interface UserResult extends UserResultData {
   id: number
+  bio: string
 }
 
 export interface UserResultDataSnakeCase {
-  username: string
+  username: string | undefined
   pet_nickname: string
   pet_id: number
   bio: string

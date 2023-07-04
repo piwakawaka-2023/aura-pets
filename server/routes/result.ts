@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/result'
-import checkJwt, { JwtRequest } from '../auth0'
-import { UserResultDataSnakeCase } from '../../models/types'
+// import { JwtRequest } from '../auth0'
+// import checkJwt from '../auth0'
 
 const router = express.Router()
 
@@ -16,25 +16,18 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.post('/', checkJwt, async (req: JwtRequest, res) => {
-  try {
-    const auth0Id = req.auth?.sub
-    const { resultData } = req.body
-    const profileData: UserResultDataSnakeCase = {
-      username: resultData.username,
-      pet_id: resultData.petId,
-      pet_nickname: resultData.petNickname,
-      bio: 'Add your pets bio',
-      user_auth_id: auth0Id,
-    }
+router.post('/', async (req, res) => {
+  const newUserPet = {
+    username: req.body.username,
+    pet_id: req.body.petId,
+    pet_nickname: req.body.petNickname,
+    user_auth_id: req.body.userAuthId,
+    bio: 'Add a pet bio',
+  }
 
-    if (!auth0Id) {
-      console.error('No auth0 id')
-      return res.status(401).send('Unauthorized')
-    } else {
-      const petAddConfirmation = await db.postResult(profileData)
-      res.json(petAddConfirmation[0])
-    }
+  try {
+    const petAddConfirmation = await db.postResult(newUserPet)
+    res.json(petAddConfirmation[0])
   } catch (error) {
     console.log('error while getting post for pet:', error)
     res.sendStatus(500)
