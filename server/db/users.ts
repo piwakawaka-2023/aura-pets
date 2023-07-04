@@ -1,22 +1,20 @@
+import { UserProfile } from '../../models/types'
 import connection from './connection'
-// import {} from '../../models/types'
 
 const db = connection
 
-export function getProfile(id: number) {
+export function getProfile(username: string): Promise<UserProfile> {
   return db('users')
-    .where('users.id', id)
+    .where({ username })
     .join('pets', 'users.pet_id', 'pets.id')
     .select(
       'users.id AS usersId',
       'username',
       'pet_nickname AS petNickname',
-      'pets.id AS petsTypeId',
       'users.pet_id AS usersPetId',
-      'sprite',
+      'pets.sprite AS petSprite',
       'users.bio AS userBio'
     )
-    .first()
 }
 
 export function canUserEdit(id: number, auth0id: string) {

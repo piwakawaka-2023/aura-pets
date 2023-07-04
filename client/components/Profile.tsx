@@ -1,37 +1,36 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import * as api from '../apis/users'
-
-interface ProfileData {
-  usersId: number
-  username: string
-  petNickname: string
-  petsTypeId: number
-  usersPetId: number
-  sprite: string
-  userBio: string
-}
+import { IfAuthenticated } from '../utilities/Authenticated'
+import { UserProfile } from '../../models/types'
 
 function Profile() {
-  const { id } = useParams()
-  const [profileInfo, setProfileInfo] = useState({} as ProfileData)
+  const { username } = useParams()
+  const [profileInfo, setProfileInfo] = useState({} as UserProfile)
 
   useEffect(() => {
-    api
-      .fetchProfile(Number(id))
-      .then(setProfileInfo)
+    async function getProfileData() {
+      const profileData = await api.fetchProfile(username)
+      return profileData
+    }
+    getProfileData()
+      .then((profileData) => {
+        const profile = profileData[0]
+        setProfileInfo(profile)
+      })
       .catch(() => 'oh no error!')
-  }, [id])
+  }, [username])
 
   return (
     <>
-      <img src={`/imgs/${profileInfo.sprite}`} alt="pet sprite"></img>
+      <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
       <h2>
         <strong>Username:</strong>
         {profileInfo.username}
       </h2>
       <h3>Nickname: {profileInfo.petNickname}</h3>
       <p>{profileInfo.userBio}</p>
+      <IfAuthenticated></IfAuthenticated>
     </>
   )
 }

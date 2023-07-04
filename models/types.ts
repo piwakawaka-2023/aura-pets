@@ -41,3 +41,12 @@ export interface UserResultDataSnakeCase {
 export interface UserResultSnakeCase extends UserResultDataSnakeCase {
   id: number
 }
+
+export interface UserProfile {
+  usersId: number
+  username: string
+  petNickname: string
+  usersPetId: number
+  petSprite: string
+  userBio: string
+}

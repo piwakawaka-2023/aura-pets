@@ -16,7 +16,7 @@ export const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/quiz" element={<Quiz />}></Route>
       <Route path="/result/:id" element={<Result />} />
-      <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/profile/:username" element={<Profile />} />
     </Route>
   )
 )

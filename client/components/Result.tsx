@@ -30,7 +30,7 @@ function Result() {
       userAuthId: user?.sub,
     }
     postResult(userPet)
-    navigate('/profile')
+    navigate(`/profile/${user?.nickname}`)
   }
 
   return (
