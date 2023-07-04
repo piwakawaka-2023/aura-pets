@@ -1,4 +1,4 @@
-import { UserProfile } from '../../models/types'
+import { UpdateUserInfo, UserProfile } from '../../models/types'
 import connection from './connection'
 
 const db = connection
@@ -15,6 +15,13 @@ export function getProfile(username: string): Promise<UserProfile> {
       'pets.sprite AS petSprite',
       'users.bio AS userBio'
     )
+}
+
+export function updateProfile(
+  username: string,
+  data: UpdateUserInfo
+): Promise<UserProfile[]> {
+  return db('users').update(data).where({ username }).returning('*')
 }
 
 export function canUserEdit(id: number, auth0id: string) {

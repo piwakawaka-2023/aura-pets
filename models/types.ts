@@ -50,3 +50,8 @@ export interface UserProfile {
   petSprite: string
   userBio: string
 }
+
+export interface UpdateUserInfo {
+  petNickname: string
+  bio: string
+}
