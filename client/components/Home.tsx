@@ -1,23 +1,51 @@
 import { Canvas } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
+import { UserProfile } from '../../models/types'
+import { fetchProfile } from '../apis/users'
 
 function Home() {
   const gltf = useLoader(GLTFLoader, '../imgs/game_boy_advance_sp.glb')
-  const { logout, loginWithRedirect } = useAuth0()
+  const { user, logout, loginWithRedirect } = useAuth0()
+  const [profileInfo, setProfileInfo] = useState({} as UserProfile)
 
   const handleSignIn = () => {
     return loginWithRedirect()
   }
-
   const handleSignOut = () => {
     logout()
   }
 
+  useEffect(() => {
+    async function getProfileData() {
+      const profileData = await fetchProfile(user?.nickname)
+      return profileData
+    }
+    getProfileData()
+      .then((profileData) => {
+        const profile = profileData[0]
+        if (profile == undefined) {
+          setProfileInfo({
+            usersId: 0,
+            username: '',
+            petNickname: 'string',
+            usersPetId: 0,
+            petSprite: '',
+            userBio: '',
+          })
+        } else {
+          setProfileInfo(profile)
+        }
+      })
+      .catch(() => 'oh no error!')
+  }, [user])
+
   const navigate = useNavigate()
+  console.log(user?.nickname)
 
   return (
     <>
@@ -25,7 +53,12 @@ function Home() {
         <div className="neon">Aura </div>
         <div className="flux">Pets </div>
         <IfAuthenticated>
-          <button onClick={() => navigate('/Quiz')}>Find your pet</button>
+          {user?.nickname === profileInfo.username &&
+          profileInfo.petNickname !== '' ? (
+            <button onClick={() => navigate('/dashboard')}>Go to Home</button>
+          ) : (
+            <button onClick={() => navigate('/quiz')}>Find your pet</button>
+          )}
           <button onClick={handleSignOut}>Log-Out</button>
         </IfAuthenticated>
         <IfNotAuthenticated>
