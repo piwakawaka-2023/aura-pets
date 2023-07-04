@@ -5,7 +5,6 @@ import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import AnimatedPage from './AnimatedPage'
 
 function Quiz() {
@@ -37,19 +36,19 @@ function Quiz() {
   }, [dispatch])
 
   useEffect(() => {
-    setFormData(
-      questions.map((question) => {
-        return {
-          question: question.id,
-          answerRelatedPet: '',
-        }
-      })
-    )
     setFormAnswers(
       questions.map((question) => {
         return {
           question: question.id,
           answerId: '',
+        }
+      })
+    )
+    setFormData(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerRelatedPet: '',
         }
       })
     )
@@ -122,79 +121,79 @@ function Quiz() {
   return (
     <>
       <AnimatedPage>
-  <div className="form-container module-border-wrap">
-    <form id="quiz-form" onSubmit={handleSubmit} className="multi-colored-border">
-      {questions.map((question, index) => {
-        if (index === currentQuestion) {
-          return (
-            <section
-              key={question.id}
-              className={`quiz-section ${transitionClass}`}
-              onAnimationEnd={() => setTransitionClass('')}
-            >
-              <p className="quiz-question">{question.question}</p>
-              {answers.map((answer) => {
-                if (answer.questionId === question.id) {
-                  return (
-                    <label
-                      key={answer.id}
-                      htmlFor={`${answer.id}`}
-                      className="quiz-label"
-                    >
-                      <input
-                        type="radio"
-                        id={`${answer.id}`}
-                        name={`${question.id}`}
-                        value={answer.petName}
-                        onChange={onAnswerSelection}
-                        checked={
-                          String(answer.id) ===
-                          formAnswers[currentQuestion].answerId
-                        }
-                        className="quiz-input"
-                      />
-                      {answer.answer}
-                      <br />
-                    </label>
-                  );
-                }
-              })}
-            </section>
-          );
-        } else {
-          return null;
-        }
-      })}
-      <div className="form-parent">
-        <button
-          type="button"
-          onClick={handlePreviousQuestion}
-          disabled={currentQuestion === 0}
-          className="quiz-button"
-          id="quiz-previous-button"
-        >
-          Previous Question
-        </button>
-        {currentQuestion < questions.length - 1 ? (
-          <button
-            type="button"
-            onClick={handleNextQuestion}
-            className="quiz-button"
-            id="quiz-next-button"
-          >
-            Next Question
-          </button>
-        ) : (
-          <input
-            type="submit"
-            value="Submit Quiz Answers"
-            className="quiz-button quiz-submit"
-          />
-        )}
-      </div>
-    </form>
-  </div>
-</AnimatedPage>
+        <div className="form-container">
+          <form id="quiz-form" onSubmit={handleSubmit}>
+            {questions.map((question, index) => {
+              if (index === currentQuestion) {
+                return (
+                  <section
+                    key={question.id}
+                    className={`quiz-section ${transitionClass}`}
+                    onAnimationEnd={() => setTransitionClass('')}
+                  >
+                    <p className="quiz-question">{question.question}</p>
+                    {answers.map((answer) => {
+                      if (answer.questionId === question.id) {
+                        return (
+                          <label
+                            key={answer.id}
+                            htmlFor={`${answer.id}`}
+                            className="quiz-label"
+                          >
+                            <input
+                              type="radio"
+                              id={`${answer.id}`}
+                              name={`${question.id}`}
+                              value={answer.petName}
+                              onChange={onAnswerSelection}
+                              checked={
+                                String(answer.id) ==
+                                formAnswers[currentQuestion].answerId
+                              }
+                              className="quiz-input"
+                            />
+                            {answer.answer}
+                            <br />
+                          </label>
+                        )
+                      }
+                    })}
+                  </section>
+                )
+              } else {
+                return null
+              }
+            })}
+            <div className="form-parent">
+              <button
+                type="button"
+                onClick={handlePreviousQuestion}
+                disabled={currentQuestion === 0}
+                className="quiz-button"
+                id="quiz-previous-button"
+              >
+                Previous Question
+              </button>
+              {currentQuestion < questions.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={handleNextQuestion}
+                  className="quiz-button"
+                  id="quiz-next-button"
+                >
+                  Next Question
+                </button>
+              ) : (
+                <input
+                  type="submit"
+                  value="Submit Quiz Answers"
+                  className="quiz-button quiz-submit"
+                />
+              )}
+            </div>
+          </form>
+        </div>
+      </AnimatedPage>
     </>
   )
 }

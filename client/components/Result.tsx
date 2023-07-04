@@ -1,53 +1,53 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchResult, postResult } from '../apis/results'
-import * as type from '../../models/types'
-
-import AnimatedPage from './AnimatedPage'// added james for page transition
-
 import { useAuth0 } from '@auth0/auth0-react'
-
-import Pet from './Pet'
-
-
-
+import { IfAuthenticated } from '../utilities/Authenticated'
+import * as type from '../../models/types'
+import AnimatedPage from './AnimatedPage' // added james for page transition
 
 function Result() {
   const { id } = useParams()
   const [pet, setPet] = useState({} as type.Result)
-  const { user, getAccessTokenSilently } = useAuth0()
+  const { user } = useAuth0()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    async function resultPromsie() {
+    async function resultPromise() {
       const res = await fetchResult(Number(id))
-      const token = await getAccessTokenSilently()
       setPet(res)
-      return { pet, token }
+      return res
     }
-    resultPromsie()
-      .then(({ pet, token }) => {
-        const userPet = {
-          petId: pet.id,
-          username: user?.nickname,
-          petNickname: pet.name,
-          userAuthId: user?.sub,
-        }
-        postResult(userPet.petId, userPet, token)
-      })
-      .catch((err) => {
-        console.error('oops', err)
-      })
-  }, [id, pet, getAccessTokenSilently, user])
+    resultPromise()
+  }, [id])
+
+  const handleSave = async () => {
+    const userPet = {
+      petId: pet.id,
+      username: user?.nickname,
+      petNickname: pet.name,
+      userAuthId: user?.sub,
+    }
+    postResult(userPet)
+    navigate(`/profile/${user?.nickname}`)
+  }
 
   return (
     <>
-    <AnimatedPage>
-      <h1>YOU GOT:</h1>
-      <h2>{pet.name}</h2>
-      <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
-      <p>{pet.bio}</p>
-      <Pet />
-    </AnimatedPage>
+      <AnimatedPage>
+        <div className="h1RESbox">
+          <h1>YOU GOT:</h1>
+
+          <h2 className="h2RES">{pet.name}</h2>
+          <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
+          <p className="pRES">{pet.bio}</p>
+          <IfAuthenticated>
+            <button onClick={() => handleSave()}>
+              Save your pet and continue
+            </button>
+          </IfAuthenticated>
+        </div>
+      </AnimatedPage>
     </>
   )
 }

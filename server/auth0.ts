@@ -4,8 +4,8 @@ import type { ParamsDictionary } from 'express-serve-static-core'
 import type { JwtPayload } from 'jsonwebtoken'
 import jwks from 'jwks-rsa'
 
-const domain = 'piwakwaka-2023-james.au.auth0.com'
-const audience = 'https://pets/api'
+const domain = 'https://piwakawaka-2023-jackson.au.auth0.com'
+const audience = 'https://aura-pets/api'
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({
