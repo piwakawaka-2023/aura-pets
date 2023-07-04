@@ -8,10 +8,10 @@ import { Provider } from 'react-redux'
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
     <Auth0Provider
-      domain="piwakwaka-2023-james.au.auth0.com"
-      clientId="UeEZBYf1faTRYtFSwqEjjAvIK3zTgt6A"
-      redirectUri={window.location.origin}
-      audience="https://pets/api"
+      domain="piwakawaka-2023-jackson.au.auth0.com"
+      clientId="wE1L4rhAEQ4FcxQ25Be0erjEcvdOKLcr"
+      authorizationParams={window.location.origin}
+      audience="https://aura-pets/api"
     >
       <Provider store={store}>
         <RouterProvider router={router} />

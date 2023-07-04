@@ -12,6 +12,7 @@ export async function postResult(
   resultData: UserResultData,
   token: string
 ): Promise<UserResultData> {
+  console.log(token)
   const res = await request
     .post(url)
     .set('Authorization', `Bearer ${token}`)
