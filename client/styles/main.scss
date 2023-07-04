@@ -31,44 +31,6 @@ h1 {
   height: 100vh; /* Adjust the height as needed */
 }
 
-// .quiz-btn-centered {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: #007bff;
-//   color: #fff;
-//   padding: 10px 20px;
-//   border-radius: 5px;
-//   border: none;
-//   text-decoration: none;
-//   font-size: 18px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .quiz-btn-centered:hover {
-//   background-color: #0056b3;
-// }
-
-// .quiz-btn-centered li {
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-// }
-
-// .quiz-btn-centered li::before {
-//   content: '▶';
-//   margin-right: 5px;
-// }
-
-// .quiz-btn-centered li:first-child::before {
-//   content: '';
-// }
-
-// styles for the home page
-// have tried adding the image to our folder under Aura-neon-background.png also
-
-// * issue having troubel with background image displaying.git push origin
 
 html,
 body {
@@ -79,6 +41,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   font-family: netflix;
+  color: white;
 }
 
 //background-image: url('https://w0.peakpx.com/wallpaper/946/437/HD-wallpaper-neon-gradient-minimalist.jpg');
@@ -97,12 +60,7 @@ body {
   //margin-bottom: 50px;
 }
 
-// button {
-//   margin-top: 20px;
-//   margin-bottom: 5px;
-//   z-index: 20;
-//   margin-right: 40px;
-// }
+
 
 .neon {
   font-family: neon;
@@ -168,11 +126,6 @@ body {
 /* background-image: url('https://thumbs.gfycat.com/HomelyBewitchedItaliangreyhound-size_restricted.gif'); */
 /* background-image: url('https://i.makeagif.com/media/1-12-2021/izAv5U.gif'); */
 
-/* h1{
-  text-align: center;
-  color: whitesmoke;
-  margin-bottom: -100px;
-} */
 
 .three-d-parent {
   margin-top: -250px;
@@ -205,73 +158,6 @@ button:hover {
 }
 
 
-///////////////////////////////////
-/// 
-/// *** Quiz Page **////
-
-// .container {
-//   max-width: 800px;
-//   padding: 20px;
-//   display: flex;
-//   justify-content: center; /* Center horizontally */
-//   align-items: center; /* Center vertically */
-// }
-
-// Define styles for the form and its elements
-
-// .form-parent{
-//   display:table-cell;
-//   vertical-align:middle
-  
-// }
-
-// #quiz-form {
-//   background-color: rgba(255, 255, 255, 0.8);
-//   border-radius: 5px;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//   padding: 20px;  
-// }
-
-// .quiz-section {
-//   margin-bottom: 20px;
-// }
-
-// .quiz-question {
-//   font-size: 18px;
-//   margin-bottom: 10px;
-// }
-
-// .quiz-label {
-//   display: block;
-//   margin-bottom: 10px;
-// }
-
-// .quiz-input {
-//   margin-right: 5px;
-// }
-
-// .quiz-button {
-//   padding: 10px 20px;
-//   background-color: #3498db;
-//   color: #fff;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-// }
-
-// .quiz-button:disabled {
-//   background-color: #ccc;
-//   cursor: not-allowed;
-// }
-
-// .quiz-submit {
-//   background-color: #27ae60;
-// }
-
-
-
-
-
 
 .form-container {
   display: flex;
@@ -294,13 +180,9 @@ button:hover {
  
   background-color: #bdcad9;
   background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
-  
- 
-
   // background-color: #ffffff;
   // background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
   //  background: rgba(255, 255, 255, 0.67);
-   
    border-radius: 16px;
    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
    backdrop-filter: blur(19.9px);
@@ -308,6 +190,7 @@ button:hover {
    opacity: 1.5;
    border: 1px solid rgba(0, 0, 0, 0.99);
    padding: 20px;
+   color: whitesmoke
   /* Add any other desired styles */
 }
 
@@ -333,10 +216,19 @@ button:hover {
 
 .quiz-button {
   padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
+ 
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+  padding: 25px 30px;
+  background-color: #050801;
+  color: #03e9f4;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 4px;
+  overflow: hidden;
+  transition: 0.5s;
   cursor: pointer;
 }
 
@@ -347,6 +239,112 @@ button:hover {
 
 .quiz-submit {
   background-color: #27ae60;
+}
+
+
+.multi-colored-border {
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.multi-colored-border:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(to right, rgb(15, 15, 112), rgb(152, 4, 4));
+  border-radius: 16px;
+}
+
+///// PETS /////
+/// 
+
+// .progress-bar {
+//   width: 200px;
+//   height: 20px;
+//   background-color: #e0e0e0;
+//   border-radius: 10px;
+//   overflow: hidden;
+// }
+
+// .progress-bar-fill {
+//   height: 100%;
+//   background-color: #4caf50;
+//   transition: width 1s linear;
+// }
+
+
+// .pet-container {
+//   text-align: center;
+// }
+
+// .buttons-container {
+//   margin-bottom: 20px;
+// }
+
+// button {
+//   margin-right: 10px;
+// }
+
+// .timer {
+//   margin-bottom: 10px;
+// }
+
+// .progress-bar {
+//   width: 200px;
+//   height: 10px;
+//   background-color: lightgray;
+//   align-items: center;
+// }
+
+// .progress-bar-fill {
+//   height: 100%;
+//   background-color: green;
+// }
+
+// h3 {
+//   margin-bottom: 5px;
+// }
+
+
+.progress-bar {
+  width: 200px;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 1s linear;
+}
+
+.pet-container {
+  text-align: center;
+}
+
+.buttons-container {
+  margin-bottom: 20px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.timer {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-bottom: 5px;
 }
 
 // RESULT PAGE SCSS
