@@ -36,15 +36,18 @@ function Result() {
   return (
     <>
       <AnimatedPage>
-        <h1>YOU GOT:</h1>
-        <h2>{pet.name}</h2>
-        <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
-        <p>{pet.bio}</p>
-        <IfAuthenticated>
-          <button onClick={() => handleSave()}>
-            Save your pet and continue
-          </button>
-        </IfAuthenticated>
+        <div className="h1RESbox">
+          <h1>YOU GOT:</h1>
+
+          <h2 className="h2RES">{pet.name}</h2>
+          <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
+          <p className="pRES">{pet.bio}</p>
+          <IfAuthenticated>
+            <button onClick={() => handleSave()}>
+              Save your pet and continue
+            </button>
+          </IfAuthenticated>
+        </div>
       </AnimatedPage>
     </>
   )
