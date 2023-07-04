@@ -9,13 +9,11 @@ export async function fetchResult(id: number): Promise<Result> {
 }
 
 export async function postResult(
-  resultData: UserResultData,
-  token: string
+  resultData: UserResultData
+  // token: string
 ): Promise<UserResultData> {
-  console.log(token)
-  const res = await request
-    .post(url)
-    .set('Authorization', `Bearer ${token}`)
-    .send({ resultData })
+  const res = await request.post(url).send(resultData)
+  // .set('Authorization', `Bearer ${token}`)
+
   return res.body
 }

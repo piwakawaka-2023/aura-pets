@@ -19,9 +19,9 @@ export interface Result {
 }
 
 export interface UserResultData {
-  username: string | undefined
-  petNickname: string | undefined
   petId: number
+  username: string | undefined
+  petNickname: string
   userAuthId: string | undefined
 }
 
@@ -31,7 +31,7 @@ export interface UserResult extends UserResultData {
 }
 
 export interface UserResultDataSnakeCase {
-  username: string
+  username: string | undefined
   pet_nickname: string
   pet_id: number
   bio: string

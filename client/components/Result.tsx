@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchResult, postResult } from '../apis/results'
+import { useAuth0 } from '@auth0/auth0-react'
+import { IfAuthenticated } from '../utilities/Authenticated'
 import * as type from '../../models/types'
 
 import AnimatedPage from './AnimatedPage' // added james for page transition
 
-import { useAuth0 } from '@auth0/auth0-react'
-import { IfAuthenticated } from '../utilities/Authenticated'
-
 function Result() {
   const { id } = useParams()
   const [pet, setPet] = useState({} as type.Result)
-  const { user, getAccessTokenSilently } = useAuth0()
+  const { user } = useAuth0()
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function resultPromise() {
@@ -23,15 +23,14 @@ function Result() {
   }, [id])
 
   const handleSave = async () => {
-    const token = await getAccessTokenSilently()
     const userPet = {
       petId: pet.id,
       username: user?.nickname,
       petNickname: pet.name,
       userAuthId: user?.sub,
     }
-    console.log(userPet)
-    postResult(userPet, token)
+    postResult(userPet)
+    navigate('/profile')
   }
 
   return (
