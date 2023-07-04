@@ -45,7 +45,6 @@ function Home() {
   }, [user])
 
   const navigate = useNavigate()
-  console.log(user?.nickname)
 
   return (
     <>
