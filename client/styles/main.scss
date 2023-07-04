@@ -349,3 +349,61 @@ button:hover {
   background-color: #27ae60;
 }
 
+// RESULT PAGE SCSS
+.h1RESbox {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  // font-family: zen tokyo zoo;
+  text-align: center;
+}
+
+.h1RESbox h1 {
+  font-size: 70px;
+  text-transform: uppercase;
+  color: #ffd9e2;
+  text-shadow: 0 0 0 transparent,
+  0 0 10px #ff003c,
+  0 0 20px rgba(255, 0, 60, 0.5),
+  0 0 40px #ff003c,
+  0 0 100px #ff003c,
+  0 0 200px #ff003c,
+  0 0 300px #ff003c,
+  0 0 500px #ff003c,
+  0 0 1000px #ff003c;
+  animation: animate 3s infinite alternate;
+}
+
+@keyframes animate {
+  40% {
+    opacity: 1;
+    }
+    42% {
+      opacity: 0.5;
+     }
+    
+    
+    40% {
+    opacity: 1;
+    }
+    40%{
+    opacity: 1;
+    }
+    40% {
+    
+    opacity: 1;
+    }
+    
+}
+
+.h2RES {
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+   text-transform: uppercase;
+   //color: white;
+   text-shadow: 1px 1px 2px #00dbde, 0 0 1em blue, 0 0 0.2em black;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+  font-size: 70px;
+  padding: 25px, 40px;
+  margin-top: -50px;
+}
