@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const MAX_TIMER = 1000;
+const MAX_TIMER = 100;
 //const ACTION_GAIN = 500  >>>to be fixed to add 500 not add and limit the bar to max 500
 
 const Pet: React.FC = () => {
@@ -53,35 +53,35 @@ const Pet: React.FC = () => {
     <div className="pet-container">
       <h1>Pet</h1>
       <div className="buttons-container">
-        <button onClick={handleFeed}>Feed</button>
-        <button onClick={handleSleep}>Sleep</button>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handleVibes}>Vibes</button>
+        <button className='needs-button' onClick={handleFeed}>Feed</button>
+        <button className='needs-button' onClick={handleSleep}>Sleep</button>
+        <button className='needs-button' onClick={handlePlay}>Play</button>
+        <button className='needs-button' onClick={handleVibes}>Vibes</button>
       </div>
       <div className="timers">
         <div className="timer">
-          <h3>Feed Timer</h3>
+          <h3>Hunger</h3>
           <div className="progress-bar">
             <div className="progress-bar-fill" style={{ width: `${feedTimer / MAX_TIMER * 100}%` }}></div>
           </div>
           {/* <div>Time Remaining: {feedTimer}</div> */}
         </div>
         <div className="timer">
-          <h3>Sleep Timer</h3>
+          <h3>Sleep</h3>
           <div className="progress-bar">
             <div className="progress-bar-fill" style={{ width: `${sleepTimer / MAX_TIMER * 100}%` }}></div>
           </div>
           {/* <div>Time Remaining: {sleepTimer}</div> */}
         </div>
         <div className="timer">
-          <h3>Play Timer</h3>
+          <h3>Play</h3>
           <div className="progress-bar">
             <div className="progress-bar-fill" style={{ width: `${playTimer / MAX_TIMER * 100}%` }}></div>
           </div>
           {/* <div>Time Remaining: {playTimer}</div> */}
         </div>
         <div className="timer">
-          <h3>Vibes Timer</h3>
+          <h3>Vibes</h3>
           <div className="progress-bar">
             <div className="progress-bar-fill" style={{ width: `${vibesTimer / MAX_TIMER * 100}%` }}></div>
           </div>
