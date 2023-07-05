@@ -55,9 +55,9 @@ const Pet = (props: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setFeedTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
-      setSleepTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
-      setPlayTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
-      setVibesTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
+      setSleepTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 0.5 : 0))
+      setPlayTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 2 : 0))
+      setVibesTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 4 : 0))
     }, 1000)
 
     return () => clearInterval(interval)
@@ -76,7 +76,7 @@ const Pet = (props: Props) => {
         <button className='needs-button' onClick={handleFeed}>Feed</button>
         <button className='needs-button' onClick={handleSleep}>Sleep</button>
         <button className='needs-button' onClick={handlePlay}>Play</button>
-        <button className='needs-button' onClick={handleVibes}>Vibes</button>
+        <button className='needs-button' onClick={handleVibes}>Vibe With</button>
       </div>
       <div className="timers">
         <div className="timer">
@@ -90,7 +90,7 @@ const Pet = (props: Props) => {
           {/* <div>Time Remaining: {feedTimer}</div> */}
         </div>
         <div className="timer">
-          <h3>Sleep</h3>
+          <h3>Energy</h3>
           <div className="progress-bar">
             <div
               className="progress-bar-fill"
@@ -100,7 +100,7 @@ const Pet = (props: Props) => {
           {/* <div>Time Remaining: {sleepTimer}</div> */}
         </div>
         <div className="timer">
-          <h3>Play</h3>
+          <h3>Fun</h3>
           <div className="progress-bar">
             <div
               className="progress-bar-fill"
