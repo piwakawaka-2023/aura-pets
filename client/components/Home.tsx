@@ -54,7 +54,9 @@ function Home() {
         <IfAuthenticated>
           {user?.nickname === profileInfo.username &&
           profileInfo.petNickname !== '' ? (
-            <button onClick={() => navigate('/dashboard')}>Go to Home</button>
+            <button onClick={() => navigate(`/home/${user?.nickname}`)}>
+              Go to Home
+            </button>
           ) : (
             <button onClick={() => navigate('/quiz')}>Find your pet</button>
           )}

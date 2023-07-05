@@ -4,7 +4,6 @@ import { fetchResult, postResult } from '../apis/results'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated } from '../utilities/Authenticated'
 import * as type from '../../models/types'
-
 import AnimatedPage from './AnimatedPage' // added james for page transition
 
 function Result() {
