@@ -24,7 +24,8 @@ export default function resultsReducer(
   const { type, payload } = action
   switch (type) {
     case INCREMENT:
-      state[payload] = state[payload] + 1
+      state[payload as keyof typeof state] =
+        state[payload as keyof typeof state] + 1
       state.Count += 1
       return { ...state }
 

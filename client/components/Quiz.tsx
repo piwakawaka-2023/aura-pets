@@ -80,7 +80,7 @@ function Quiz() {
   }, [resultTally, navigate])
 
   const playSound = (soundFileName: string) => {
-    const audio = new Audio(`/snds/${soundFileName}`);
+    const audio = new Audio(`/snds/${soundFileName}`)
     audio.play()
   }
 
@@ -111,7 +111,6 @@ function Quiz() {
       setTransitionClass('previous-question')
       playSound('sfx-button-2.mp3')
     }
-    
   }
 
   const handleSubmit = (evt: FormEvent) => {
@@ -126,9 +125,6 @@ function Quiz() {
     })
     playSound('sfx-button-4.mp3')
   }
-
-
-
 
   return (
     <>

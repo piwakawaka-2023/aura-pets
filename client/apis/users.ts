@@ -1,5 +1,5 @@
-import request from 'superagent'
 import { UpdateUserInfo, UserProfile } from '../../models/types'
+import request from 'superagent'
 
 const url = '/api/v1/profile'
 
