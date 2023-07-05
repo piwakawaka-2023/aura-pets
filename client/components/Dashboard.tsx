@@ -2,6 +2,8 @@ import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
 import { useParams, useNavigate } from 'react-router-dom'
 import Pet from './Pet'
 import Navbar from './Navbar'
+import AnimatedPage from './AnimatedPage'
+import { motion } from 'framer-motion'
 
 function Dashboard() {
   const { username } = useParams()
@@ -9,6 +11,11 @@ function Dashboard() {
 
   return (
     <>
+      <AnimatedPage>
+      <motion.div
+         initial={{ opacity:0 }}
+         animate={{ opacity:1 }}
+         exit={{ opacity: 0 }}>
       <Navbar />
       <IfAuthenticated>
         <Pet username={username} />
@@ -21,6 +28,10 @@ function Dashboard() {
           Back to Sign-in/Sign-up page
         </button>
       </IfNotAuthenticated>
+      </motion.div>
+      </AnimatedPage>
+      
+      
     </>
   )
 }

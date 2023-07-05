@@ -63,7 +63,7 @@ h1 {
 
 html,
 body {
-  height: 100%;
+  height: 120vh;
   margin: 0;
   background-image: url('/imgs/Aura-neon-background.png') !important;
   background-size: cover;
@@ -375,9 +375,8 @@ input[type="radio"]:focus {
 }
 
 .pet-container img {
-  
   max-width: 50vw;
-  height:20rem
+  height:20rem;
 }
 
 .buttons-container {
@@ -473,14 +472,32 @@ h3 {
 .nav-container {
   width: 100vw;
   height: 8vh;
+  margin-bottom: 40px;
 }
 
 .navbar {
   display: flex;
   flex-direction: row;
   float: right; 
-  margin-top: 0
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  //left: 30%; 
+
+  img{
+    max-width: 150px;
+    max-height: 100px;
+    margin: 10px;
+  }
+  
 }
+
+.navbar button {
+ margin: 5px;
+}
+
 .user-status {
   float: right;
   padding-top: 1.5vh;
@@ -526,7 +543,19 @@ h3 {
 .dashBox{
   border-radius: 25px;
   background: linear-gradient(90deg, #00dbde, #fc00ff);
-  box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em #00dbde, 0 0 0.2em black
+  box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em #00dbde, 0 0 0.2em black;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.dashBox img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  z-index: 10;
+  text-align: center;
 }
 
 .profileContent {
@@ -535,4 +564,35 @@ h3 {
    text-align: center;
    left: 40%;
    top: 50%
+}
+
+.edit-form{
+  input {
+    width: 10%;
+    padding: 8px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Apply specific styles to the submit button */
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    min-width: 15%;
+    margin-left: 3px;
+  }
+  
+  /* Apply specific styles to the "Back" button */
+  button {
+    background-color: #ccc;
+    color: black;
+    cursor: pointer;
+  }
+
+  label{
+    margin-right: 3px;
+  }
 }

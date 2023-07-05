@@ -5,7 +5,8 @@ import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
-import AnimatedPage from './AnimatedPage'
+
+import { motion } from 'framer-motion'
 
 function Quiz() {
   const dispatch = useAppDispatch()
@@ -128,8 +129,11 @@ function Quiz() {
 
   return (
     <>
-      <AnimatedPage>
-        <div className="form-container">
+        <motion.div className="form-container"
+          initial={{ opacity:0 }}
+          animate={{ opacity:1 }}
+          exit={{ opacity: 0 }}
+        >
           <form id="quiz-form" onSubmit={handleSubmit}>
             {questions.map((question, index) => {
               if (index === currentQuestion) {
@@ -200,8 +204,7 @@ function Quiz() {
               )}
             </div>
           </form>
-        </div>
-      </AnimatedPage>
+        </motion.div>
     </>
   )
 }
