@@ -16,33 +16,35 @@ function Navbar() {
 
   return (
     <>
-      <IfAuthenticated>
-        <section className="navbar">
-          {user && (
-            <p className="user-status">Signed in as: {user?.nickname}</p>
-          )}
-          <button
-            className="nav-button"
-            onClick={() => navigate(`/home/${user?.nickname}`)}
-          >
-            Home
-          </button>
-          <button
-            className="nav-button"
-            onClick={() => navigate(`/profile/${user?.nickname}`)}
-          >
-            Profile
-          </button>
-          <button className="nav-button" onClick={handleSignOut}>
-            Sign out
-          </button>
-        </section>
-      </IfAuthenticated>
-      <IfNotAuthenticated>
-        <section>
-          <button onClick={handleSignIn}>Sign in</button>
-        </section>
-      </IfNotAuthenticated>
+      <div className="nav-container">
+        <IfAuthenticated>
+          <section className="navbar">
+            {user && (
+              <p className="user-status">Signed in as: {user?.nickname}</p>
+            )}
+            <button
+              className="nav-button"
+              onClick={() => navigate(`/home/${user?.nickname}`)}
+            >
+              Home
+            </button>
+            <button
+              className="nav-button"
+              onClick={() => navigate(`/profile/${user?.nickname}`)}
+            >
+              Profile
+            </button>
+            <button className="nav-button" onClick={handleSignOut}>
+              Sign out
+            </button>
+          </section>
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <section className="navbar">
+            <button onClick={handleSignIn}>Sign in</button>
+          </section>
+        </IfNotAuthenticated>
+      </div>
     </>
   )
 }
