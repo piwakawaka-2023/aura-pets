@@ -16,6 +16,10 @@ function Result() {
   const { id } = useParams()
   const [pet, setPet] = useState({} as type.Result)
   const { user, getAccessTokenSilently } = useAuth0()
+  const playSound = (soundFileName: string) => {
+    const audio = new Audio(`/snds/${soundFileName}`);
+    audio.play()
+  }
 
   useEffect(() => {
     async function resultPromsie() {
@@ -33,10 +37,12 @@ function Result() {
           userAuthId: user?.sub,
         }
         postResult(userPet.petId, userPet, token)
+        
       })
       .catch((err) => {
         console.error('oops', err)
       })
+      playSound(`sfx-${id}-jingle.mp3`)
   }, [id, pet, getAccessTokenSilently, user])
 
   return (
