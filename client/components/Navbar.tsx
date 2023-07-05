@@ -17,17 +17,31 @@ function Navbar() {
   return (
     <>
       <IfAuthenticated>
-        {user && <p>Signed in as: {user?.nickname}</p>}
-        <button onClick={() => navigate(`/home/${user?.nickname}`)}>
-          Home
-        </button>
-        <button onClick={() => navigate(`/profile/${user?.nickname}`)}>
-          Profile
-        </button>
-        <button onClick={handleSignOut}>Sign out</button>
+        <section className="navbar">
+          {user && (
+            <p className="user-status">Signed in as: {user?.nickname}</p>
+          )}
+          <button
+            className="nav-button"
+            onClick={() => navigate(`/home/${user?.nickname}`)}
+          >
+            Home
+          </button>
+          <button
+            className="nav-button"
+            onClick={() => navigate(`/profile/${user?.nickname}`)}
+          >
+            Profile
+          </button>
+          <button className="nav-button" onClick={handleSignOut}>
+            Sign out
+          </button>
+        </section>
       </IfAuthenticated>
       <IfNotAuthenticated>
-        <button onClick={handleSignIn}>Sign in</button>
+        <section>
+          <button onClick={handleSignIn}>Sign in</button>
+        </section>
       </IfNotAuthenticated>
     </>
   )

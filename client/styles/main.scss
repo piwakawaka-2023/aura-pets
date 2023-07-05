@@ -461,3 +461,19 @@ h3 {
   padding: 25px, 40px;
   margin-top: -50px;
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  float: right
+}
+.user-status {
+  float: right;
+  padding-top: 3vh;
+  padding-right: 5vh;
+}
+
+.nav-button {
+  padding-left: 5vh;
+  padding-right: 5vh
+}
