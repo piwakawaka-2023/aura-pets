@@ -44,8 +44,19 @@ function Profile() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-    api.patchProfile(username, formData)
-    handleHideForm()
+    api
+      .patchProfile(username, formData)
+      .then(() => {
+        const profile = api.fetchProfile(username)
+        return profile
+      })
+      .then((profileData) => {
+        setProfileInfo(profileData[0])
+        handleHideForm()
+      })
+      .catch((err) => {
+        console.error('error!', err)
+      })
   }
 
   return (
@@ -53,7 +64,7 @@ function Profile() {
       <Navbar />
       <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
       <h2>
-        <strong>Username:</strong>
+        <strong>Username: </strong>
         {profileInfo.username}
       </h2>
       <h3>Nickname: {profileInfo.petNickname}</h3>
