@@ -510,6 +510,16 @@ h3 {
 }
 
 
+//Profile Page SCSS
+.imgProfile {
+  position:absolute;
+  top:15%;
+  left: 45%;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+}
+
+
 .dashBox{
   border-radius: 25px;
   background: linear-gradient(90deg, #00dbde, #fc00ff);

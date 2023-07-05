@@ -62,7 +62,13 @@ function Profile() {
   return (
     <>
       <Navbar />
-      <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
+      <div className="imgProfile">
+        <img
+          className="imgprof"
+          src={`/imgs/${profileInfo.petSprite}`}
+          alt="pet sprite"
+        ></img>
+      </div>
       <h2>
         <strong>Username: </strong>
         {profileInfo.username}
