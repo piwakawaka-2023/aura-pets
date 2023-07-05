@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { Canvas } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -7,6 +8,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
 import { UserProfile } from '../../models/types'
 import { fetchProfile } from '../apis/users'
+import { motion } from 'framer-motion'
+import AnimatedPage from './AnimatedPage'
 
 function Home() {
   const gltf = useLoader(GLTFLoader, '../imgs/game_boy_advance_sp.glb')
@@ -48,7 +51,12 @@ function Home() {
 
   return (
     <>
-      <div className="container">
+    <AnimatedPage>
+    <motion.div
+      initial={{ opacity:0 }}
+      animate={{ opacity:1 }}
+      exit={{ opacity: 0 }}>
+    <div className="container">
         <div className="neon">Aura </div>
         <div className="flux">Pets </div>
         <IfAuthenticated>
@@ -88,7 +96,10 @@ function Home() {
             />
           </Canvas>
         </div>
-      </div>
+      </div> 
+    </motion.div>
+    </AnimatedPage>
+   
     </>
   )
 }

@@ -5,6 +5,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated } from '../utilities/Authenticated'
 import * as type from '../../models/types'
 import AnimatedPage from './AnimatedPage'
+import { MotionConfig } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 function Result() {
   const { id } = useParams()
@@ -41,6 +43,10 @@ function Result() {
   return (
     <>
       <AnimatedPage>
+      <motion.div 
+        initial={{ opacity:0 }}
+        animate={{ opacity:1 }}
+        exit={{ opacity: 0 }}>
         <div className="h1RESbox">
           <h1>YOU GOT:</h1>
 
@@ -55,6 +61,7 @@ function Result() {
             </button>
           </IfAuthenticated>
         </div>
+      </motion.div>
       </AnimatedPage>
     </>
   )

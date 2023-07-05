@@ -1,6 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import AnimatedPage from './AnimatedPage'
 
 function Navbar() {
   const { user, logout, loginWithRedirect } = useAuth0()
@@ -16,9 +18,14 @@ function Navbar() {
 
   return (
     <>
-      <div className="nav-container">
+      <AnimatedPage>
+      <motion.div className="nav-container"
+         initial={{ opacity:0 }}
+         animate={{ opacity:1 }}
+         exit={{ opacity: 0 }}>
         <IfAuthenticated>
           <section className="navbar">
+            <img alt="logo" src="/public/logoAP.png" />
             {user && (
               <p className="user-status">Signed in as: {user?.nickname}</p>
             )}
@@ -44,7 +51,8 @@ function Navbar() {
             <button onClick={handleSignIn}>Sign in</button>
           </section>
         </IfNotAuthenticated>
-      </div>
+      </motion.div>
+      </AnimatedPage>
     </>
   )
 }

@@ -4,6 +4,8 @@ import { UpdateUserInfo, UserProfile } from '../../models/types'
 import { IfAuthenticated } from '../utilities/Authenticated'
 import * as api from '../apis/users'
 import Navbar from './Navbar'
+import { motion } from 'framer-motion'
+import AnimatedPage from './AnimatedPage'
 
 function Profile() {
   const { username } = useParams()
@@ -61,7 +63,12 @@ function Profile() {
 
   return (
     <>
-      <Navbar />
+    <AnimatedPage>
+    <motion.div
+       initial={{ opacity:0 }}
+       animate={{ opacity:1 }}
+       exit={{ opacity: 0 }}>
+    <Navbar />
       <div className="pet-container">
         <img
           className="dashBox"
@@ -82,8 +89,8 @@ function Profile() {
               <button onClick={handleHideForm}>Edit Pet Info</button>
             ) : (
               <>
-                <form>
-                  <label htmlFor="petNickname">Your Pet&apos;s Nickname</label>
+                <form className="edit-form">
+                  <label htmlFor="petNickname">Your Pet&apos;s Nickname:</label>
                   <input
                     value={formData.petNickname}
                     placeholder={formData.petNickname}
@@ -93,7 +100,7 @@ function Profile() {
                     onChange={handleChange}
                   />
 
-                  <label htmlFor="bio">Pet&apos;s Bio</label>
+                  <label htmlFor="bio">Pet&apos;s Bio:</label>
                   <input
                     value={formData.bio}
                     placeholder={formData.bio}
@@ -115,6 +122,8 @@ function Profile() {
           </section>
         </IfAuthenticated>
       </div>
+    </motion.div>
+    </AnimatedPage>
     </>
   )
 }

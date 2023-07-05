@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { fetchProfile } from '../apis/users'
 import { UserProfile } from '../../models/types'
+import { motion } from 'framer-motion'
+import AnimatedPage from './AnimatedPage'
 
 
 const MAX_TIMER = 100;
@@ -69,7 +71,10 @@ const Pet = (props: Props) => {
   }
 
   return (
-    <div className="pet-container">
+    <motion.div className="pet-container"
+    initial={{ opacity:0 }}
+    animate={{ opacity:1 }}
+    exit={{ opacity: 0 }}>
       <h1>{profileInfo.petNickname}</h1>
       <img className='dashBox' src={`/imgs/${profileInfo.petSprite}`} alt="Pet sprite"></img>
       <div className="buttons-container">
@@ -120,7 +125,7 @@ const Pet = (props: Props) => {
           {/* <div>Time Remaining: {vibesTimer}</div> */}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
