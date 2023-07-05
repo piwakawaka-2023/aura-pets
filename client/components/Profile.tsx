@@ -69,50 +69,52 @@ function Profile() {
           alt="pet sprite"
         ></img>
       </div>
+      <div className="profileContent">
       <h2>
         <strong>Username: </strong>
         {profileInfo.username}
       </h2>
       <h3>Nickname: {profileInfo.petNickname}</h3>
       <p>{profileInfo.userBio}</p>
-      <IfAuthenticated>
-        <section>
-          {hiddenForm ? (
-            <button onClick={handleHideForm}>Edit Pet Info</button>
-          ) : (
-            <>
-              <form>
-                <label htmlFor="petNickname">Your Pet&apos;s Nickname</label>
-                <input
-                  value={formData.petNickname}
-                  placeholder={formData.petNickname}
-                  type="text"
-                  id="petNickname"
-                  name="petNickname"
-                  onChange={handleChange}
-                />
+        <IfAuthenticated>
+          <section>
+            {hiddenForm ? (
+              <button onClick={handleHideForm}>Edit Pet Info</button>
+            ) : (
+              <>
+                <form>
+                  <label htmlFor="petNickname">Your Pet&apos;s Nickname</label>
+                  <input
+                    value={formData.petNickname}
+                    placeholder={formData.petNickname}
+                    type="text"
+                    id="petNickname"
+                    name="petNickname"
+                    onChange={handleChange}
+                  />
 
-                <label htmlFor="bio">Pet&apos;s Bio</label>
-                <input
-                  value={formData.bio}
-                  placeholder={formData.bio}
-                  type="text"
-                  id="bio"
-                  name="bio"
-                  onChange={handleChange}
-                />
+                  <label htmlFor="bio">Pet&apos;s Bio</label>
+                  <input
+                    value={formData.bio}
+                    placeholder={formData.bio}
+                    type="text"
+                    id="bio"
+                    name="bio"
+                    onChange={handleChange}
+                  />
 
-                <input
-                  type="submit"
-                  value="Update Pet Information"
-                  onClick={handleSubmit}
-                />
-              </form>
-              <button onClick={() => handleHideForm()}>Back</button>
-            </>
-          )}
-        </section>
-      </IfAuthenticated>
+                  <input
+                    type="submit"
+                    value="Update Pet Information"
+                    onClick={handleSubmit}
+                  />
+                </form>
+                <button onClick={() => handleHideForm()}>Back</button>
+              </>
+            )}
+          </section>
+        </IfAuthenticated>
+      </div>
     </>
   )
 }

@@ -509,6 +509,14 @@ h3 {
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
 
+//Profile Page SCSS
+.imgProfile {
+  position:absolute;
+  top:15%;
+  left: 45%;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+}
 
 //Profile Page SCSS
 .imgProfile {
@@ -526,3 +534,9 @@ h3 {
   box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em #00dbde, 0 0 0.2em black
 }
 
+.profileContent {
+   position:absolute;
+   text-align: center;
+   left: 40%;
+   top: 50%
+}
