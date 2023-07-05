@@ -71,7 +71,7 @@ const Pet = (props: Props) => {
   return (
     <div className="pet-container">
       <h1>{profileInfo.petNickname}</h1>
-      <img src={`/imgs/${profileInfo.petSprite}`} alt="Pet sprite"></img>
+      <img className='dashBox' src={`/imgs/${profileInfo.petSprite}`} alt="Pet sprite"></img>
       <div className="buttons-container">
         <button className='needs-button' onClick={handleFeed}>Feed</button>
         <button className='needs-button' onClick={handleSleep}>Sleep</button>

@@ -375,6 +375,7 @@ input[type="radio"]:focus {
 }
 
 .pet-container img {
+  
   max-width: 50vw;
   height:20rem
 }
@@ -508,4 +509,10 @@ h3 {
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
 
+
+.dashBox{
+  border-radius: 25px;
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+  box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em #00dbde, 0 0 0.2em black
+}
 
