@@ -12,25 +12,25 @@ const Pet: React.FC = () => {
   // Function to handle feeding action
   const handleFeed = () => {
     setFeedTimer(MAX_TIMER)
-    playSound('pickle_rick.mp3')
+    playSound('sfx-button-1.mp3')
   }
 
   // Function to handle sleeping action
   const handleSleep = () => {
     setSleepTimer(MAX_TIMER)
-    playSound('sleepSound.mp3')
+    playSound('sfx-button-2.mp3')
   }
 
   // Function to handle playing action
   const handlePlay = () => {
     setPlayTimer(MAX_TIMER)
-    playSound('playSound.mp3')
+    playSound('sfx-button-3.mp3')
   }
 
   // Function to handle vibes action
   const handleVibes = () => {
     setVibesTimer(MAX_TIMER)
-    playSound('vibesSound.mp3')
+    playSound('sfx-button-4.mp3')
   }
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Pet: React.FC = () => {
   }, [])
 
   const playSound = (soundFileName: string) => {
-    const audio = new Audio(`/public/${soundFileName}`);
+    const audio = new Audio(`/snds/${soundFileName}`);
     audio.play()
   }
 
