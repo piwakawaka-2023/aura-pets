@@ -1,7 +1,36 @@
 //Home page component .
+// @font-face {
+//   font-family: 'netflix';
+//   src: url('/client/styles/NetflixSans-Bold.otf') format('opentype');
+// }
+
+
+// Regular Font Weight
 @font-face {
   font-family: 'netflix';
-  src: url('/client/styles/NetflixSans-Bold.otf') format('opentype');
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff) format('woff')
+}
+
+
+// Medium Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 700;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff) format('woff')
+}
+
+// Bold Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 800;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff) format('woff')
+}
+
+// Extra Bold Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 900;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff) format('woff')
 }
 
 .welcome-message {
@@ -137,11 +166,11 @@ body {
 button {
   padding: 25px 30px;
   background-color: #050801;
-  color: #03e9f4;
+  color: white;
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   overflow: hidden;
   transition: 0.5s;
   cursor: pointer;
@@ -168,6 +197,13 @@ button:hover {
 
 }
 
+.form-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
+
 #quiz-form-container {
   display: flex;
   justify-content: center;
@@ -177,7 +213,6 @@ button:hover {
 }
 
 #quiz-form {
- 
   background-color: #bdcad9;
   background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
   // background-color: #ffffff;
@@ -191,10 +226,7 @@ button:hover {
    border: 1px solid rgba(0, 0, 0, 0.99);
    padding: 20px;
    color: whitesmoke
-  /* Add any other desired styles */
 }
-
-
 
 .quiz-section {
   margin-bottom: 20px;
@@ -202,12 +234,15 @@ button:hover {
 
 .quiz-question {
   font-size: 18px;
+  font-weight: 900;
   margin-bottom: 10px;
 }
 
 .quiz-label {
   display: block;
   margin-bottom: 10px;
+  margin-top: 2em;
+  margin-left:1em
 }
 
 .quiz-input {
@@ -215,30 +250,46 @@ button:hover {
 }
 
 .quiz-button {
-  padding: 10px 20px;
- 
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   padding: 25px 30px;
   background-color: #050801;
-  color: #03e9f4;
-  font-weight: bold;
+  color:white;
+  font-weight: 700;
   border: none;
   border-radius: 5px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   overflow: hidden;
   transition: 0.5s;
   cursor: pointer;
+  
 }
 
 .quiz-button:disabled {
-  background-color: #ccc;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
+
 .quiz-submit {
-  background-color: #27ae60;
+  padding: 25px 30px;
+  background-color: #050801;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 3px;
+  overflow: hidden;
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.quiz-submit:hover {
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
 
@@ -261,56 +312,45 @@ button:hover {
   border-radius: 16px;
 }
 
+
+// Radio Button Styling
+input[type="radio"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  color: red;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em groove red;
+  border-radius: 25%;
+  transform: translateY(0.155em) translateX(-0.5em);
+  transition: opacity 0.1s, background-color 0.1s;
+}
+
+input[type="radio"]:hover {
+opacity: 0.5;
+background-color: silver;
+}
+
+
+input[type="radio"]:checked {
+  background-color: rgb(0, 0, 0);
+  opacity: 1;
+
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) groove currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
 ///// PETS /////
-/// 
-
-// .progress-bar {
-//   width: 200px;
-//   height: 20px;
-//   background-color: #e0e0e0;
-//   border-radius: 10px;
-//   overflow: hidden;
-// }
-
-// .progress-bar-fill {
-//   height: 100%;
-//   background-color: #4caf50;
-//   transition: width 1s linear;
-// }
-
-
-// .pet-container {
-//   text-align: center;
-// }
-
-// .buttons-container {
-//   margin-bottom: 20px;
-// }
-
-// button {
-//   margin-right: 10px;
-// }
-
-// .timer {
-//   margin-bottom: 10px;
-// }
-
-// .progress-bar {
-//   width: 200px;
-//   height: 10px;
-//   background-color: lightgray;
-//   align-items: center;
-// }
-
-// .progress-bar-fill {
-//   height: 100%;
-//   background-color: green;
-// }
-
-// h3 {
-//   margin-bottom: 5px;
-// }
-
 
 .progress-bar {
   width: 200px;
@@ -329,18 +369,34 @@ button:hover {
 
 .pet-container {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .buttons-container {
+  display: flex;
+  flex-direction: r;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-button {
-  margin-right: 10px;
+.needs-button {
+  background-color: #032d30;
+  margin: 10px
+}
+
+.timers {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: center;
+  align-items: space-between;
 }
 
 .timer {
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
+  margin: 10px
 }
 
 h3 {

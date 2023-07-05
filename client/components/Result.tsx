@@ -11,6 +11,10 @@ function Result() {
   const [pet, setPet] = useState({} as type.Result)
   const { user } = useAuth0()
   const navigate = useNavigate()
+  const playSound = (soundFileName: string) => {
+    const audio = new Audio(`/snds/${soundFileName}`);
+    audio.play()
+  }
 
   useEffect(() => {
     async function resultPromise() {
@@ -28,6 +32,7 @@ function Result() {
       petNickname: pet.name,
       userAuthId: user?.sub,
     }
+    playSound(`sfx-${id}-jingle.mp3`)
     postResult(userPet)
     navigate(`/profile/${user?.nickname}`)
   }
