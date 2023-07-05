@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { UpdateUserInfo, UserProfile } from '../../models/types'
 import { IfAuthenticated } from '../utilities/Authenticated'
 import * as api from '../apis/users'
+import Navbar from './Navbar'
 
 function Profile() {
   const { username } = useParams()
@@ -43,15 +44,27 @@ function Profile() {
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault()
-    api.patchProfile(username, formData)
-    handleHideForm()
+    api
+      .patchProfile(username, formData)
+      .then(() => {
+        const profile = api.fetchProfile(username)
+        return profile
+      })
+      .then((profileData) => {
+        setProfileInfo(profileData[0])
+        handleHideForm()
+      })
+      .catch((err) => {
+        console.error('error!', err)
+      })
   }
 
   return (
     <>
+      <Navbar />
       <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
       <h2>
-        <strong>Username:</strong>
+        <strong>Username: </strong>
         {profileInfo.username}
       </h2>
       <h3>Nickname: {profileInfo.petNickname}</h3>
