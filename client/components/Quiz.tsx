@@ -5,6 +5,7 @@ import { getAnswerThunk } from '../actions/answers'
 import { increment } from '../actions/results'
 import { ResultTally } from '../reducers/results'
 import { useNavigate } from 'react-router-dom'
+import AnimatedPage from './AnimatedPage'
 
 function Quiz() {
   const dispatch = useAppDispatch()
@@ -14,19 +15,20 @@ function Quiz() {
   const resultTally: ResultTally = useAppSelector(
     (state) => state.resultsReducer
   )
-  interface StateData {
+
+  interface FormStateData {
     question: number
     answerRelatedPet: string
   }
+  interface AnswerStateData {
+    question: number
+    answerId: string
+  }
 
-  const [formData, setFormData] = useState<StateData[]>(
-    questions.map((question) => {
-      return {
-        question: question.id,
-        answerRelatedPet: '',
-      }
-    })
-  )
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [formData, setFormData] = useState([] as FormStateData[])
+  const [formAnswers, setFormAnswers] = useState([] as AnswerStateData[])
+  const [transitionClass, setTransitionClass] = useState('')
 
   useEffect(() => {
     dispatch(getQuestionsThunk())
@@ -34,6 +36,14 @@ function Quiz() {
   }, [dispatch])
 
   useEffect(() => {
+    setFormAnswers(
+      questions.map((question) => {
+        return {
+          question: question.id,
+          answerId: '',
+        }
+      })
+    )
     setFormData(
       questions.map((question) => {
         return {
@@ -69,14 +79,38 @@ function Quiz() {
     }
   }, [resultTally, navigate])
 
+  const playSound = (soundFileName: string) => {
+    const audio = new Audio(`/snds/${soundFileName}`)
+    audio.play()
+  }
+
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
-    setFormData(
-      formData.map((data) => {
-        if (data.question === Number(evt.target.name))
-          data.answerRelatedPet = evt.target.value
-        return data
-      })
-    )
+    setFormData((prevFormData) => {
+      const updatedFormData = [...prevFormData]
+      updatedFormData[currentQuestion].answerRelatedPet = evt.target.value
+      return updatedFormData
+    })
+    setFormAnswers((prevFormData) => {
+      const updatedAnswerData = [...prevFormData]
+      updatedAnswerData[currentQuestion].answerId = evt.target.id
+      return updatedAnswerData
+    })
+  }
+
+  const handleNextQuestion = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1)
+      setTransitionClass('next-question')
+      playSound('sfx-button-1.mp3')
+    }
+  }
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prevQuestion) => prevQuestion - 1)
+      setTransitionClass('previous-question')
+      playSound('sfx-button-2.mp3')
+    }
   }
 
   const handleSubmit = (evt: FormEvent) => {
@@ -89,41 +123,85 @@ function Quiz() {
     namesArr.forEach((name) => {
       dispatch(increment(name))
     })
+    playSound('sfx-button-4.mp3')
   }
 
   return (
     <>
-      <form>
-        {questions.map((question) => {
-          return (
-            <section key={question.id}>
-              <p>{question.question}</p>
-              {answers.map((answer) => {
-                if (answer.questionId === question.id) {
-                  return (
-                    <label key={answer.id} htmlFor={`${answer.id}`}>
-                      <input
-                        type="radio"
-                        id={`${answer.id}`}
-                        name={`${question.id}`}
-                        value={answer.petName}
-                        onChange={onAnswerSelection}
-                      />
-                      {answer.answer}
-                      <br />
-                    </label>
-                  )
-                }
-              })}
-            </section>
-          )
-        })}
-        <input
-          type="submit"
-          value="Submit Quiz Answers"
-          onClick={handleSubmit}
-        />
-      </form>
+      <AnimatedPage>
+        <div className="form-container">
+          <form id="quiz-form" onSubmit={handleSubmit}>
+            {questions.map((question, index) => {
+              if (index === currentQuestion) {
+                return (
+                  <section
+                    key={question.id}
+                    className={`quiz-section ${transitionClass}`}
+                    onAnimationEnd={() => setTransitionClass('')}
+                  >
+                    <p className="quiz-question">{question.question}</p>
+                    {answers.map((answer) => {
+                      if (answer.questionId === question.id) {
+                        return (
+                          <label
+                            key={answer.id}
+                            htmlFor={`${answer.id}`}
+                            className="quiz-label"
+                          >
+                            <input
+                              type="radio"
+                              id={`${answer.id}`}
+                              name={`${question.id}`}
+                              value={answer.petName}
+                              onChange={onAnswerSelection}
+                              checked={
+                                String(answer.id) ==
+                                formAnswers[currentQuestion].answerId
+                              }
+                              className="quiz-input"
+                            />
+                            {answer.answer}
+                            <br />
+                          </label>
+                        )
+                      }
+                    })}
+                  </section>
+                )
+              } else {
+                return null
+              }
+            })}
+            <div className="form-parent">
+              <button
+                type="button"
+                onClick={handlePreviousQuestion}
+                disabled={currentQuestion === 0}
+                className="quiz-button"
+                id="quiz-previous-button"
+              >
+                Previous Question
+              </button>
+              {currentQuestion < questions.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={handleNextQuestion}
+                  className="quiz-button"
+                  id="quiz-next-button"
+                >
+                  Next Question
+                </button>
+              ) : (
+                <input
+                  type="submit"
+                  value="Submit Quiz Answers"
+                  className="quiz-button quiz-submit"
+                />
+              )}
+            </div>
+          </form>
+        </div>
+      </AnimatedPage>
     </>
   )
 }

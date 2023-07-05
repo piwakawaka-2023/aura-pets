@@ -1,7 +1,7 @@
-import * as api from '../apis/answers'
 import { ThunkAction } from '../store'
 import { Answer } from '../../models/types'
 import { AnswerActions } from '../../models/actions'
+import * as api from '../apis/answers'
 
 export const SET_ANSWERS = 'SET_ANSWERS'
 

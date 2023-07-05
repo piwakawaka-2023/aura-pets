@@ -43,7 +43,7 @@ exports.seed = (knex) => {
     {id: 9037, answer: "I would make a house in the clouds!", question_id: 8010, pet_id: 1},
     {id: 9038, answer: "I would live in a cave made out of ice.", question_id: 8010, pet_id: 2},
     {id: 9039, answer: "I would love to just live in a treehouse.", question_id: 8010, pet_id: 3},
-    {id: 9040, answer: "I would want to live in a cozy cottage on a hill", question_id: 8010, pet_id: 4},
+    {id: 9040, answer: "I would want to live in a cozy cottage on a hill.", question_id: 8010, pet_id: 4},
 
 
 
