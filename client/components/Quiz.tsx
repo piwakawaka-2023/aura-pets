@@ -79,6 +79,11 @@ function Quiz() {
     }
   }, [resultTally, navigate])
 
+  const playSound = (soundFileName: string) => {
+    const audio = new Audio(`/snds/${soundFileName}`);
+    audio.play()
+  }
+
   const onAnswerSelection = (evt: ChangeEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => {
       const updatedFormData = [...prevFormData]
@@ -96,6 +101,7 @@ function Quiz() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1)
       setTransitionClass('next-question')
+      playSound('sfx-button-1.mp3')
     }
   }
 
@@ -103,7 +109,9 @@ function Quiz() {
     if (currentQuestion > 0) {
       setCurrentQuestion((prevQuestion) => prevQuestion - 1)
       setTransitionClass('previous-question')
+      playSound('sfx-button-2.mp3')
     }
+    
   }
 
   const handleSubmit = (evt: FormEvent) => {
@@ -116,7 +124,11 @@ function Quiz() {
     namesArr.forEach((name) => {
       dispatch(increment(name))
     })
+    playSound('sfx-button-4.mp3')
   }
+
+
+
 
   return (
     <>

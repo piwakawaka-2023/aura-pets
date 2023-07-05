@@ -1,7 +1,36 @@
 //Home page component .
+// @font-face {
+//   font-family: 'netflix';
+//   src: url('/client/styles/NetflixSans-Bold.otf') format('opentype');
+// }
+
+
+// Regular Font Weight
 @font-face {
   font-family: 'netflix';
-  src: url('/client/styles/NetflixSans-Bold.otf') format('opentype');
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff) format('woff')
+}
+
+
+// Medium Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 700;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff) format('woff')
+}
+
+// Bold Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 800;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Bd.woff) format('woff')
+}
+
+// Extra Bold Font Weight
+@font-face {
+  font-family: 'netflix';
+  font-weight: 900;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff2) format('woff2'),url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff) format('woff')
 }
 
 .welcome-message {
@@ -31,44 +60,6 @@ h1 {
   height: 100vh; /* Adjust the height as needed */
 }
 
-// .quiz-btn-centered {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: #007bff;
-//   color: #fff;
-//   padding: 10px 20px;
-//   border-radius: 5px;
-//   border: none;
-//   text-decoration: none;
-//   font-size: 18px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .quiz-btn-centered:hover {
-//   background-color: #0056b3;
-// }
-
-// .quiz-btn-centered li {
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-// }
-
-// .quiz-btn-centered li::before {
-//   content: '▶';
-//   margin-right: 5px;
-// }
-
-// .quiz-btn-centered li:first-child::before {
-//   content: '';
-// }
-
-// styles for the home page
-// have tried adding the image to our folder under Aura-neon-background.png also
-
-// * issue having troubel with background image displaying.git push origin
 
 html,
 body {
@@ -79,6 +70,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   font-family: netflix;
+  color: white;
 }
 
 //background-image: url('https://w0.peakpx.com/wallpaper/946/437/HD-wallpaper-neon-gradient-minimalist.jpg');
@@ -97,12 +89,7 @@ body {
   //margin-bottom: 50px;
 }
 
-// button {
-//   margin-top: 20px;
-//   margin-bottom: 5px;
-//   z-index: 20;
-//   margin-right: 40px;
-// }
+
 
 .neon {
   font-family: neon;
@@ -168,11 +155,6 @@ body {
 /* background-image: url('https://thumbs.gfycat.com/HomelyBewitchedItaliangreyhound-size_restricted.gif'); */
 /* background-image: url('https://i.makeagif.com/media/1-12-2021/izAv5U.gif'); */
 
-/* h1{
-  text-align: center;
-  color: whitesmoke;
-  margin-bottom: -100px;
-} */
 
 .three-d-parent {
   margin-top: -250px;
@@ -184,11 +166,11 @@ body {
 button {
   padding: 25px 30px;
   background-color: #050801;
-  color: #03e9f4;
+  color: white;
   font-weight: bold;
   border: none;
   border-radius: 5px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   overflow: hidden;
   transition: 0.5s;
   cursor: pointer;
@@ -205,73 +187,6 @@ button:hover {
 }
 
 
-///////////////////////////////////
-/// 
-/// *** Quiz Page **////
-
-// .container {
-//   max-width: 800px;
-//   padding: 20px;
-//   display: flex;
-//   justify-content: center; /* Center horizontally */
-//   align-items: center; /* Center vertically */
-// }
-
-// Define styles for the form and its elements
-
-// .form-parent{
-//   display:table-cell;
-//   vertical-align:middle
-  
-// }
-
-// #quiz-form {
-//   background-color: rgba(255, 255, 255, 0.8);
-//   border-radius: 5px;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//   padding: 20px;  
-// }
-
-// .quiz-section {
-//   margin-bottom: 20px;
-// }
-
-// .quiz-question {
-//   font-size: 18px;
-//   margin-bottom: 10px;
-// }
-
-// .quiz-label {
-//   display: block;
-//   margin-bottom: 10px;
-// }
-
-// .quiz-input {
-//   margin-right: 5px;
-// }
-
-// .quiz-button {
-//   padding: 10px 20px;
-//   background-color: #3498db;
-//   color: #fff;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-// }
-
-// .quiz-button:disabled {
-//   background-color: #ccc;
-//   cursor: not-allowed;
-// }
-
-// .quiz-submit {
-//   background-color: #27ae60;
-// }
-
-
-
-
-
 
 .form-container {
   display: flex;
@@ -280,6 +195,13 @@ button:hover {
   align-items: center;
   height: 100vh;  
 
+}
+
+.form-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
 }
 
 #quiz-form-container {
@@ -291,16 +213,11 @@ button:hover {
 }
 
 #quiz-form {
- 
   background-color: #bdcad9;
   background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
-  
- 
-
   // background-color: #ffffff;
   // background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
   //  background: rgba(255, 255, 255, 0.67);
-   
    border-radius: 16px;
    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
    backdrop-filter: blur(19.9px);
@@ -308,10 +225,8 @@ button:hover {
    opacity: 1.5;
    border: 1px solid rgba(0, 0, 0, 0.99);
    padding: 20px;
-  /* Add any other desired styles */
+   color: whitesmoke
 }
-
-
 
 .quiz-section {
   margin-bottom: 20px;
@@ -319,12 +234,15 @@ button:hover {
 
 .quiz-question {
   font-size: 18px;
+  font-weight: 900;
   margin-bottom: 10px;
 }
 
 .quiz-label {
   display: block;
   margin-bottom: 10px;
+  margin-top: 2em;
+  margin-left:1em
 }
 
 .quiz-input {
@@ -332,21 +250,157 @@ button:hover {
 }
 
 .quiz-button {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
+  padding: 25px 30px;
+  background-color: #050801;
+  color:white;
+  font-weight: 700;
   border: none;
   border-radius: 5px;
+  letter-spacing: 3px;
+  overflow: hidden;
+  transition: 0.5s;
   cursor: pointer;
+  
 }
 
 .quiz-button:disabled {
-  background-color: #ccc;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
+
 .quiz-submit {
-  background-color: #27ae60;
+  padding: 25px 30px;
+  background-color: #050801;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 3px;
+  overflow: hidden;
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.quiz-submit:hover {
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+
+.multi-colored-border {
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.multi-colored-border:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(to right, rgb(15, 15, 112), rgb(152, 4, 4));
+  border-radius: 16px;
+}
+
+
+// Radio Button Styling
+input[type="radio"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  color: red;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em groove red;
+  border-radius: 25%;
+  transform: translateY(0.155em) translateX(-0.5em);
+  transition: opacity 0.1s, background-color 0.1s;
+}
+
+input[type="radio"]:hover {
+opacity: 0.5;
+background-color: silver;
+}
+
+
+input[type="radio"]:checked {
+  background-color: rgb(0, 0, 0);
+  opacity: 1;
+
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) groove currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+///// PETS /////
+
+.progress-bar {
+  width: 200px;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 1s linear;
+}
+
+.pet-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: r;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.needs-button {
+  background-color: #032d30;
+  margin: 10px
+}
+
+.timers {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: center;
+  align-items: space-between;
+}
+
+.timer {
+  // margin-bottom: 10px;
+  margin: 10px
+}
+
+h3 {
+  margin-bottom: 5px;
 }
 
 // RESULT PAGE SCSS
@@ -421,3 +475,4 @@ button:hover {
   border-radius: 25px;
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
+

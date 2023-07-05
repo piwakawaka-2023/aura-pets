@@ -11,7 +11,7 @@ router.get('/:id', async (req, res) => {
     const [petsArr] = await db.getResult(id)
     res.json(petsArr)
   } catch (error) {
-    console.log('error while getting pet:', error)
+    console.error('error while getting pet:', error)
     res.sendStatus(500)
   }
 })
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     const petAddConfirmation = await db.postResult(newUserPet)
     res.json(petAddConfirmation[0])
   } catch (error) {
-    console.log('error while getting post for pet:', error)
+    console.error('error while getting post for pet:', error)
     res.sendStatus(500)
   }
 })
