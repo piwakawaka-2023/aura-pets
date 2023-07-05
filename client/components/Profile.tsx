@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { UpdateUserInfo, UserProfile } from '../../models/types'
 import { IfAuthenticated } from '../utilities/Authenticated'
 import * as api from '../apis/users'
+import Navbar from './Navbar'
 
 function Profile() {
   const { username } = useParams()
@@ -49,6 +50,7 @@ function Profile() {
 
   return (
     <>
+      <Navbar />
       <img src={`/imgs/${profileInfo.petSprite}`} alt="pet sprite"></img>
       <h2>
         <strong>Username:</strong>

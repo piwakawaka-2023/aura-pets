@@ -1,6 +1,7 @@
 import { IfAuthenticated, IfNotAuthenticated } from '../utilities/Authenticated'
 import { useParams, useNavigate } from 'react-router-dom'
 import Pet from './Pet'
+import Navbar from './Navbar'
 
 function Dashboard() {
   const { username } = useParams()
@@ -8,8 +9,8 @@ function Dashboard() {
 
   return (
     <>
+      <Navbar />
       <IfAuthenticated>
-        {/* <Navbar /> */}
         <Pet username={username} />
       </IfAuthenticated>
       <IfNotAuthenticated>
