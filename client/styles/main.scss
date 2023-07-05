@@ -462,6 +462,23 @@ h3 {
   margin-top: -50px;
 }
 
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  float: right
+}
+.user-status {
+  float: right;
+  padding-top: 3vh;
+  padding-right: 5vh;
+}
+
+.nav-button {
+  padding-left: 5vh;
+  padding-right: 5vh
+}
+
 .pRES {
   padding: 20px;
  box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em blue, 0 0 0.2em black;
