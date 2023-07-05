@@ -23,6 +23,7 @@ function Result() {
       return res
     }
     resultPromise()
+    playSound(`sfx-${id}-jingle.mp3`)
   }, [id])
 
   const handleSave = async () => {
