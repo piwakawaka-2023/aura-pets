@@ -1,18 +1,27 @@
+import { UpdateUserInfo, UserProfile } from '../../models/types'
 import connection from './connection'
-// import {} from '../../models/types'
 
 const db = connection
 
-export function getProfile(id: number) {
+export function getProfile(username: string): Promise<UserProfile> {
   return db('users')
-    .where('id', id)
+    .where({ username })
     .join('pets', 'users.pet_id', 'pets.id')
     .select(
+      'users.id AS usersId',
       'username',
-      'pet_nickname',
-      'pets.sprite AS sprite',
-      'users.bio AS bio'
+      'pet_nickname AS petNickname',
+      'users.pet_id AS usersPetId',
+      'pets.sprite AS petSprite',
+      'users.bio AS userBio'
     )
+}
+
+export function updateProfile(
+  username: string,
+  data: UpdateUserInfo
+): Promise<UserProfile[]> {
+  return db('users').update(data).where({ username }).returning('*')
 }
 
 export function canUserEdit(id: number, auth0id: string) {
@@ -24,8 +33,4 @@ export function canUserEdit(id: number, auth0id: string) {
         throw new Error('Unauthorized')
       }
     })
-}
-
-export function updateProfile(profileData) {
-  return db('users').where('id', profileData.id).update(profileData)
 }

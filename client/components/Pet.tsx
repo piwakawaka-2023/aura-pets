@@ -1,13 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+import { fetchProfile } from '../apis/users'
+import { UserProfile } from '../../models/types'
+
 
 const MAX_TIMER = 100;
 //const ACTION_GAIN = 500  >>>to be fixed to add 500 not add and limit the bar to max 500
 
-const Pet: React.FC = () => {
+type Props = { username: string | undefined }
+
+const Pet = (props: Props) => {
   const [feedTimer, setFeedTimer] = useState(0)
   const [sleepTimer, setSleepTimer] = useState(0)
   const [playTimer, setPlayTimer] = useState(0)
   const [vibesTimer, setVibesTimer] = useState(0)
+  const [profileInfo, setProfileInfo] = useState({} as UserProfile)
+
+  useEffect(() => {
+    async function getProfileData() {
+      const profileData = await fetchProfile(props.username)
+      return profileData
+    }
+    getProfileData()
+      .then((profileData) => {
+        const profile = profileData[0]
+        setProfileInfo(profile)
+      })
+      .catch(() => 'oh no error!')
+  }, [props.username])
 
   // Function to handle feeding action
   const handleFeed = () => {
@@ -39,7 +58,7 @@ const Pet: React.FC = () => {
       setSleepTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
       setPlayTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
       setVibesTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0))
-    }, 1000);
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [])
@@ -51,7 +70,8 @@ const Pet: React.FC = () => {
 
   return (
     <div className="pet-container">
-      <h1>Pet</h1>
+      <h1>{profileInfo.petNickname}</h1>
+      <img src={`/imgs/${profileInfo.petSprite}`} alt="Pet sprite"></img>
       <div className="buttons-container">
         <button className='needs-button' onClick={handleFeed}>Feed</button>
         <button className='needs-button' onClick={handleSleep}>Sleep</button>
@@ -62,28 +82,40 @@ const Pet: React.FC = () => {
         <div className="timer">
           <h3>Hunger</h3>
           <div className="progress-bar">
-            <div className="progress-bar-fill" style={{ width: `${feedTimer / MAX_TIMER * 100}%` }}></div>
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${(feedTimer / MAX_TIMER) * 100}%` }}
+            ></div>
           </div>
           {/* <div>Time Remaining: {feedTimer}</div> */}
         </div>
         <div className="timer">
           <h3>Sleep</h3>
           <div className="progress-bar">
-            <div className="progress-bar-fill" style={{ width: `${sleepTimer / MAX_TIMER * 100}%` }}></div>
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${(sleepTimer / MAX_TIMER) * 100}%` }}
+            ></div>
           </div>
           {/* <div>Time Remaining: {sleepTimer}</div> */}
         </div>
         <div className="timer">
           <h3>Play</h3>
           <div className="progress-bar">
-            <div className="progress-bar-fill" style={{ width: `${playTimer / MAX_TIMER * 100}%` }}></div>
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${(playTimer / MAX_TIMER) * 100}%` }}
+            ></div>
           </div>
           {/* <div>Time Remaining: {playTimer}</div> */}
         </div>
         <div className="timer">
           <h3>Vibes</h3>
           <div className="progress-bar">
-            <div className="progress-bar-fill" style={{ width: `${vibesTimer / MAX_TIMER * 100}%` }}></div>
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${(vibesTimer / MAX_TIMER) * 100}%` }}
+            ></div>
           </div>
           {/* <div>Time Remaining: {vibesTimer}</div> */}
         </div>
@@ -92,7 +124,4 @@ const Pet: React.FC = () => {
   )
 }
 
-export default Pet;
-
-
-
+export default Pet
