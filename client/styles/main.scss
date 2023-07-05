@@ -462,6 +462,7 @@ h3 {
   margin-top: -50px;
 }
 
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -477,3 +478,18 @@ h3 {
   padding-left: 5vh;
   padding-right: 5vh
 }
+
+.pRES {
+  padding: 20px;
+ box-shadow: 1px 1.5px 1px #00dbde, 0 0 1em blue, 0 0 0.2em black;
+  color: white;
+  max-width: 1000px;
+  border-radius: 25px;
+  background: black;
+}
+
+.petBox{
+  border-radius: 25px;
+  background: linear-gradient(90deg, #00dbde, #fc00ff);
+}
+
