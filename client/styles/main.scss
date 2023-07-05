@@ -469,21 +469,29 @@ h3 {
   margin-top: -50px;
 }
 
+.nav-container {
+  width: 100vw;
+  height: 8vh;
+}
 
 .navbar {
   display: flex;
   flex-direction: row;
-  float: right
+  float: right; 
+  margin-top: 0
 }
 .user-status {
   float: right;
-  padding-top: 3vh;
-  padding-right: 5vh;
+  padding-top: 1.5vh;
+  padding-right: 3vw;
 }
 
 .nav-button {
-  padding-left: 5vh;
-  padding-right: 5vh
+  margin-top: 0vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  
+
 }
 
 .pRES {
@@ -499,4 +507,5 @@ h3 {
   border-radius: 25px;
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
+
 
