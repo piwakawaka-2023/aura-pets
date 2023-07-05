@@ -70,13 +70,12 @@ function Profile() {
         ></img>
       </div>
       <div className="profileContent">
-        <h2>
-          <strong>Username: </strong>
-          {profileInfo.username}
-        </h2>
-        <h3>Nickname: {profileInfo.petNickname}</h3>
-        <p>{profileInfo.userBio}</p>
-
+      <h2>
+        <strong>Username: </strong>
+        {profileInfo.username}
+      </h2>
+      <h3>Nickname: {profileInfo.petNickname}</h3>
+      <p>{profileInfo.userBio}</p>
         <IfAuthenticated>
           <section>
             {hiddenForm ? (
