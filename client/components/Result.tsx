@@ -40,7 +40,9 @@ function Result() {
           <h1>YOU GOT:</h1>
 
           <h2 className="h2RES">{pet.name}</h2>
-          <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
+          <div className="petBox">
+            <img src={`/imgs/${pet.sprite}`} alt={pet.name}></img>
+          </div>
           <p className="pRES">{pet.bio}</p>
           <IfAuthenticated>
             <button onClick={() => handleSave()}>
