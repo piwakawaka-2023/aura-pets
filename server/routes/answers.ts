@@ -1,10 +1,8 @@
 import express from 'express'
-
 import * as db from '../db/answers'
 
 const router = express.Router()
 
-// GET all answers
 router.get('/', async (req, res) => {
   try {
     const answerArr = await db.getAnswers()
@@ -13,6 +11,5 @@ router.get('/', async (req, res) => {
     console.error(`error while getting answers: ${error}`)
     res.sendStatus(500)
   }
-  
 })
 export default router

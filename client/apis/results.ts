@@ -1,5 +1,5 @@
-import request from 'superagent'
 import { Result, UserResultData } from '../../models/types'
+import request from 'superagent'
 
 const url = '/api/v1/result'
 
@@ -10,10 +10,7 @@ export async function fetchResult(id: number): Promise<Result> {
 
 export async function postResult(
   resultData: UserResultData
-  // token: string
 ): Promise<UserResultData> {
   const res = await request.post(url).send(resultData)
-  // .set('Authorization', `Bearer ${token}`)
-
   return res.body
 }

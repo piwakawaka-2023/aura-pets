@@ -1,5 +1,5 @@
-import request from 'superagent'
 import { Answer } from '../../models/types'
+import request from 'superagent'
 
 const url = '/api/v1/answers'
 
