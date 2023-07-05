@@ -62,20 +62,20 @@ function Profile() {
   return (
     <>
       <Navbar />
-      <div className="imgProfile">
+      <div className="pet-container">
         <img
-          className="imgprof"
+          className="dashBox"
           src={`/imgs/${profileInfo.petSprite}`}
           alt="pet sprite"
         ></img>
       </div>
       <div className="profileContent">
-      <h2>
-        <strong>Username: </strong>
-        {profileInfo.username}
-      </h2>
-      <h3>Nickname: {profileInfo.petNickname}</h3>
-      <p>{profileInfo.userBio}</p>
+        <h2>
+          <strong>Username: </strong>
+          {profileInfo.username}
+        </h2>
+        <h3>Nickname: {profileInfo.petNickname}</h3>
+        <p>{profileInfo.userBio}</p>
         <IfAuthenticated>
           <section>
             {hiddenForm ? (

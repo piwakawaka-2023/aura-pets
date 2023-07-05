@@ -509,20 +509,15 @@ h3 {
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
 
-//Profile Page SCSS
-.imgProfile {
-  position:absolute;
-  top:15%;
-  left: 45%;
-  border-radius: 25px;
-  background: linear-gradient(90deg, #00dbde, #fc00ff);
-}
 
 //Profile Page SCSS
 .imgProfile {
-  position:absolute;
-  top:15%;
-  left: 45%;
+  display: flex;
+  max-width: fit-content;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 9vh;
+  margin-left: 39vw;
   border-radius: 25px;
   background: linear-gradient(90deg, #00dbde, #fc00ff);
 }
@@ -535,7 +530,8 @@ h3 {
 }
 
 .profileContent {
-   position:absolute;
+   display: flex;
+   flex-direction: column;
    text-align: center;
    left: 40%;
    top: 50%
